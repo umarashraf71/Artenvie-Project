@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 30px">
+      <div
+        class="col-md-8"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 40px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-3 mb-4 text-info">Give Order Rating and Review</h2>
+
+        <hr
+          style="
+            background-color: #bad0d3 !important;
+            height: 0.3px;
+            border: none !important;
+            width: 100%;
+            margin: 20px 0px 30px 0px;
+          "
+        />
+
+        <div class="form-group">
+          <label for="artist">Artist</label>
+          <h5 class="text-info"><%= artist %></h5>
+        </div>
+
+        <form action="/admin/users/customerReview/<%= artist %> " method="post">
+          <div class="form-group mt-2">
+            <div class="form-group">
+              <label for="category">Give Rating </label>
+              <select name="rating" id="status" class="form-control">
+                <option value="" hidden>Give Rating</option>
+                <option value="1">1</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+                <option value="2.5">2.5</option>
+                <option value="3">3</option>
+                <option value="3.5">3.5</option>
+                <option value="4">4</option>
+                <option value="4.5">4.5</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <label for="condition">Write your Review </label>
+            <textarea
+              type="text"
+              class="form-control"
+              placeholder="Enter your review about artist or order ..."
+              id="descripttion"
+              name="review"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-md btn-info mt-2 mb-2">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/inbox.css" />
+
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="#">Dashboard / Inbox</a>
+	</li>
+</ol>
+<br />
+<h2>Inbox</h2>
+<br />
+<br />
+
+<div class="inbox-container">
+	<% chats.forEach(chat => { %>
+	<div class="chat-head">
+		<div class="img"><img src="/uploads/users/user.jpg" alt="" /></div>
+		<div class="info">
+			<h3>User Name</h3>
+			<a href="/admin/users/inbox/chat/<%= chat %>">Chat</a>
+		</div>
+	</div>
+	<% }) %>
+</div>

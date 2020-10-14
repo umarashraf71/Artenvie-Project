@@ -1,0 +1,182 @@
+<link rel="stylesheet" href="/css/artist-profile.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Artist Profile</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div class="float-left">
+				<h1>ARTIST PROFILE</h1>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="row">
+			<div class="col-md-4 profile-wrapper">
+				<div class="row justify-content-center">
+					<div class="profile-img mt-3">
+						<img
+							src="/uploads/users/<%= artist.image %>"
+							alt=""
+							class="img-fluid rounded-circle"
+							style="box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3); border: 1px solid black; width: 200px !important; height: 200px !important"
+						/>
+						<input type="hidden" value="<%= artist.image %>" id="artistImage" />
+					</div>
+					<div class="mt-4 justify-content-center">
+						<h4 class="text-center profile-username"><%= artist.username %></h4>
+
+						<p class="artist-profile-quote text-center">"Art enables us to find ourselves and lose ourselves at the same time"</p>
+					</div>
+				</div>
+
+				<% if (user != undefined) { %> <% if (user.userType == "Customer") { %>
+
+				<div class="row contact justify-content-center">
+					<a href="/admin/inbox/<%= artist.id %>/<%= artist.username %>" class="btn btn-sm btn-primary"> Contact Me </a>
+				</div>
+
+				<% } %> <% if (user.userType == "Artist") { %>
+
+				<h6 class="text-center mb-5 text-danger">To contact login as a customer!</h6>
+
+				<% } %> <% } else { %>
+
+				<h6 class="text-center mb-5 text-danger">Log in to contact Artist</h6>
+
+				<% } %>
+
+				<div class="row mt-2">
+					<div class="col-12 p-0 profile-info">
+						<p><span class="float-left mb-1 profile-info-color"> Language:</span> <span class="float-right"> <%= artist.languages %> </span></p>
+						<div class="clearfix"></div>
+						<p><span class="float-left mb-1 profile-info-color"> From:</span> <span class="float-right"> <%= artist.location %> </span></p>
+						<div class="clearfix"></div>
+
+						<div class="profile-line mt-1 mb-2"></div>
+
+						<span class="profile-info-color"> Skills:</span>
+						<p class="mb-2">
+							<span class="pr-2"> <%= artist.skills %> </span>
+						</p>
+
+						<div class="profile-line mt-1 mb-2"></div>
+
+						<span class="profile-info-color"> Description:</span>
+						<p class="description" style="max-height: 250px; text-align: justify">
+							<%= artist.description %> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+							specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-7 offset-md-1 mt-4">
+				<div class="artist-reviews">
+					<h1 class="">
+						Reviews as Artist
+						<span class="average-rating"
+							><i class="fa fa-star average-rating"></i>
+							<% if (reviews.length > 0) { %> <% let rating = 0 %> <% reviews.forEach(r => { %> <% rating += r.rating %> <% }) %> <% rating /= reviews.length %> <%= rating.toFixed(2) %> <% } else { %>
+							<span>Not yet reviewed</span>
+							<% } %>
+						</span>
+					</h1>
+
+					<ul class="media-list">
+						<% reviews.forEach(r => { %>
+						<li class="review-info row">
+							<a href="#" class="mr-3 col-md-1">
+								<img src="/images/<%= r.customerImage %>" title="<%= r.customerName %>" />
+							</a>
+							<div class="media-body col-md-11">
+								<strong class="text-success"
+									><%= r.customerName %>
+									<span class="rating"><i class="fa fa-star rating"></i> <%= r.rating %></span>
+								</strong>
+								<p><%= r.review %></p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<% }) %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<% if (artworks.length > 0) { %>
+	<div class="container" style="margin-top: 80px">
+		<div class="row">
+			<div class="col-12 text-center related-artworks">
+				<h3>ARTIST ARTWORKS</h3>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-4 mb-3">
+		<div class="row mt-2">
+			<% artworks.forEach(artwork => { %>
+
+			<div class="col-md-4 card-padd mt-5">
+				<div class="card shadow" style="width: auto">
+					<div class="inner img">
+						<a href="/home/productpage/<%=artwork.slug%>">
+							<img class="card-img-top lazy" src="/uploads/<%=artwork.file[0]%>" alt="" />
+						</a>
+					</div>
+
+					<div class="card-body">
+						<h4 class="card-title"><%= artwork.title %></h4>
+						<div class="buying-format">
+							<p>Buying Format: <%= artwork.buyingFormat %></p>
+						</div>
+						<div class="artwork-category">
+							<p>Category: <%= artwork.category %></p>
+						</div>
+						<div class="artist-name">
+							<p><%= artwork.artist %></p>
+						</div>
+
+						<% if (artwork.buyingFormat == 'Auction') { %>
+						<a href="/home/biddingroom" class="btn btn-primary">View More</a>
+						<% } else { %>
+						<a href="/home/productpage/<%=artwork.slug%>" class="btn btn-primary">View More</a>
+						<% } %> <% if (artwork.buyingFormat != 'Auction' ) { %>
+						<h5 class="mt-2 float-right">
+							<% if (artwork.buyingFormat == 'Discount') { %>
+							<span class="discount pr-2" style="text-decoration: line-through"> $<%= artwork.price %> </span>
+
+							<div class="text-success float-right">$<%= artwork.discountPrice %></div>
+
+							<div class="clearfix"></div>
+							<% } else { %>
+							<span>$ <%= artwork.price %> </span>
+							<% } %>
+						</h5>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<% }) %>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<a href="/home/user/artist/artworks/<%= artist.slug %>" class="btn btn-primary" style="margin-top: 50px; padding: 7px 15px; word-spacing: 2px"> See More <%= artist.username %> Artworks </a>
+			</div>
+		</div>
+	</div>
+
+	<% } %>
+</div>

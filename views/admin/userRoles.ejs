@@ -1,0 +1,98 @@
+<style>
+	body {
+		margin: 0 auto;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Rubik', sans-serif !important;
+	}
+
+	.form-wrap h1 {
+		font-size: 48px;
+		padding-bottom: 20px;
+		letter-spacing: 3px;
+		color: #dfbd24;
+		font-weight: 400;
+	}
+
+	.form-group input {
+		height: 47px;
+		padding-left: 20px;
+		font-size: 18px;
+		font-weight: 200;
+		color: black !important;
+	}
+
+	.form-group label {
+		font-size: 18px;
+		word-spacing: 2px;
+		color: black;
+		margin-top: 15px;
+		font-weight: 100;
+	}
+
+	.form-group a {
+		color: #dfbd24;
+		font-weight: 400;
+		text-decoration: none;
+	}
+
+	.btn-primary {
+		margin-top: 25px;
+		font-size: 18px;
+		font-weight: 500;
+		background: none !important;
+		background-color: none !important;
+		border: 1px solid #dfbd24 !important;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: #dfbd24;
+	}
+
+	.btn-primary:hover {
+		transition: 0.3s ease-in-out;
+		color: #dfbd24;
+		background-color: black !important;
+		border-color: black !important;
+		/*set the color you want here*/
+	}
+
+	::placeholder {
+		font-weight: 100;
+		font-size: 18px;
+	}
+</style>
+
+<div class="container">
+	<div class="row mt-5" style="color: black;">
+		<div class="col-lg-6 offset-lg-3 text-center mt-5 mb-5">
+			<div class="form-wrap mt-5">
+				<h1 class="text-center">Assign Role</h1>
+				<form role="form" action="/home/user-Roles" method="post">
+					<div class="form-group">
+						<select class="form-control" id="sel1" name="username">
+							<option value="" hidden>Select User</option>
+							<% users.forEach(user => { %>
+							<option value="<%= user.username %>"><%= user.username %></option>
+							<% }) %>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<select class="form-control" name="role">
+							<option value="" hidden>Select Role</option>
+							<option value="admin">Admin</option>
+							<option value="user">User</option>
+						</select>
+					</div>
+
+					<input
+						class="btn btn-primary btn-block btn-lg mb-5"
+						type="submit"
+						id="btn-login"
+						value="Submit"
+					/>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

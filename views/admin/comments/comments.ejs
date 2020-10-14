@@ -1,0 +1,52 @@
+<h2 class="mt-3 mb-3 text-info">Artwork Comments</h2>
+
+<table class="table table-bordered mt-4 text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Author</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Artwork</th>
+      <th scope="col">Approve</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% comments.forEach(comment => { %>
+    <tr>
+      <td><%= comment.username %></td>
+      <td width="17%"><%= comment.body %></td>
+      <td width="10%"><%= comment.artwork.title %></td>
+      <td width="2%"><%= comment.approveComment %></td>
+      <td>
+        <a
+          style="padding: 4.5px 30px !important"
+          class="btn btn-info btn-sm mt-1"
+          href="/home/productpage/<%= comment.artwork.slug %>"
+          >View</a
+        >
+        <% if (comment.approveComment) { %>
+        <a
+          style="padding: 4.5px 8px !important"
+          class="btn btn-warning btn-sm mt-1"
+          href="/admin/comments/approveComment/<%= comment.id %>"
+          >Unapprove</a
+        >
+        <% } else { %>
+        <a
+          style="padding: 4.5px 18px !important"
+          class="btn btn-success btn-sm mt-1"
+          href="/admin/comments/approveComment/<%= comment.id %>"
+          >Approve</a
+        >
+        <% } %>
+        <a
+          style="padding: 4.5px 24px !important"
+          class="btn btn-danger btn-sm mt-1"
+          href="/admin/comments/remove/<%= comment.id %>"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

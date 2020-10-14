@@ -1,0 +1,108 @@
+<style>
+  th {
+    background: #d3e9ee !important;
+    font-size: 1.03em;
+    width: 35% !important;
+  }
+  td {
+    font-size: 16.5px;
+  }
+</style>
+
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 25px">
+      <div
+        class="col-md-8"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 40px 0px 40px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-2 mb-4 text-info">Manage Profile</h2>
+
+        <div class="adminPanel">
+          <div class="row mb-4">
+            <div class="col-md-12" style="margin: 0 auto !important">
+              <table
+                class="table table-bordered"
+                style="width: 100% !important"
+              >
+                <tbody>
+                  <tr>
+                    <th scope="col">Display Picture</th>
+                    <td>
+                      <img
+                        src="/uploads/users/<%= user.image %>"
+                        alt=""
+                        class="img img-responsive user-img"
+                        width="150"
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="col">Name</th>
+                    <td><%= user.name %></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="col">Email</th>
+                    <td><%= user.email %></td>
+                  </tr>
+
+                  <% if (user.userType == 'Artist') { %>
+
+                  <tr>
+                    <th scope="col">Language</th>
+                    <td><%= user.languages %></td>
+                  </tr>
+                  <tr>
+                    <th scope="col">From</th>
+                    <td><%= user.location %></td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Skills</th>
+                    <td><%= user.skills %></td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Description</th>
+                    <td class="w-75"><%= user.description %></td>
+                  </tr>
+
+                  <% } %>
+
+                  <tr>
+                    <th scope="col">Details</th>
+                    <td>
+                      <a
+                        style="padding: 4.5px 29px !important"
+                        class="btn btn-info btn-sm"
+                        href="/admin/users/account/edit"
+                        >Edit Details</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Password</th>
+                    <td>
+                      <a
+                        class="btn btn-info btn-sm"
+                        href="/admin/users/account/password "
+                        >Edit Password</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

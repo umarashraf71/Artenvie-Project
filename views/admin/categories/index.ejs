@@ -1,0 +1,102 @@
+<style>
+  table tbody form button {
+    margin-left: 4px !important;
+    cursor: pointer;
+  }
+  .centerBtn {
+    display: inline-block;
+  }
+</style>
+
+<h2 class="mt-3 mb-3 text-info">Manage Categories</h2>
+
+<div class="row">
+  <div class="col-md-7">
+    <table class="table table-bordered mt-4 text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Category Title</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% categories.forEach(ctg => { %>
+
+        <tr>
+          <td width="50%"><%= ctg.name %></td>
+          <td>
+            <div class="centerBtn">
+              <a
+                class="btn btn-info btn-sm float-left mt-1"
+                href="/admin/categories/edit/<%= ctg._id %>"
+                >Edit</a
+              >
+              <form
+                action="/admin/categories/delete/<%= ctg._id %>?_method=DELETE"
+                method="post"
+                class="float-right mt-1"
+              >
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-4 mr-1 ml-4 mt-3">
+    <form action="/admin/categories/create" method="post" class="ctg-form">
+      <div class="form-group">
+        <label for="title">Add Category:</label>
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Enter category name"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-sm btn-info float-right mb-5 ctg-btn"
+      >
+        Add Category
+      </button>
+    </form>
+
+    <!-- <div class="form-group">
+			<label for="title" >Edit Category:</label>
+			<input name="username" type="text" class="form-control" id="title" placeholder="Enter category name" >
+		</div>
+
+		<button type="submit" class="btn btn-sm btn-info mb-2">Edit Category</button> -->
+  </div>
+</div>
+
+<script>
+  const btn = document.querySelector('.ctg-btn');
+  const form = document.querySelector('.ctg-form');
+
+  form.addEventListener(
+    'submit',
+    (e) => {
+      e.preventDefault();
+      btn.setAttribute('disabled', true);
+
+      spinner.style.display = 'flex';
+      form.submit();
+
+      setTimeout(() => {
+        spinner.style.display = 'none';
+      }, 3000);
+    },
+    false
+  );
+</script>

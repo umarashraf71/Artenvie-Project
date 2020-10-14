@@ -1,0 +1,156 @@
+<% const items = order.cart.items %>
+
+<div class="container">
+	<div class="adminPanel">
+		<div class="row mb-4" style="margin-top: 30px">
+			<div
+				class="col-md-10"
+				style="
+					margin: 0 auto !important;
+					padding: 20px 45px 30px 45px;
+					border: 1px solid rgb(220, 220, 220);
+					background: rgb(243, 243, 243);
+					box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.19);
+				"
+			>
+				<h2 class="mt-2 mb-3 text-info">Order Details</h2>
+
+				<hr style="background-color: #bad0d3 !important; height: 0.3px; border: none !important; width: 100%; margin: 25px 0px 0px 0px" />
+
+				<div class="row">
+					<% if (user.userType=='Customer') { %>
+					<div class="col-md-12" style="margin-bottom: -35px !important">
+						<div class="order-text mt-3">
+							<p class="mb-1 h5">
+								<span class="text-info pr-1"> Artist : </span>
+								<span class="pr-2"><a href="/home/user/artist/profile/<%= order.artist %>" class="text-dark"> <%= order.artist %> </a></span>
+							</p>
+							<p class="mb-1 h5">
+								<span class="text-info pr-1"> Order Status : </span>
+								<span class="pr-2"> <%= order.status %> </span>
+							</p>
+						</div>
+					</div>
+					<% } %> <% if (user.userType == 'Artist' || user.roles.includes('admin')) { %>
+
+					<div class="col-md-12 mb-4">
+						<div class="order-text mt-3">
+							<p class="mb-1">
+								<span class="text-info pr-1"> Date:</span>
+								<span class="float-right pr-2"> <%= order.date.toLocaleString() %></span>
+							</p>
+							<p class="mt-3 mb-1">
+								<span class="text-info pr-1"> Order No:</span>
+								<span class="float-right pr-2"> <%= order.orderID %></span>
+							</p>
+							<p class="mb-1"><span class="text-info pr-1"> Name:</span><span class="float-right pr-2"> <%= order.firstName %> <%= order.lastName %> </span></p>
+
+							<p class="mb-1">
+								<span class="text-info pr-1"> Email:</span>
+								<span class="float-right pr-2"> <%= order.email %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mb-1">
+								<span class="text-info pr-1"> Phone No:</span>
+								<span class="float-right pr-2"> <%= order.phoneNo %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mb-1">
+								<span class="text-info pr-1"> Payment Type:</span>
+								<span class="float-right pr-2"> <%= order.paymentMethod %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mb-1">
+								<span class="text-info pr-1"> Shipping Address:</span>
+								<span class="float-right pr-2"> <%= order.address %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mb-2">
+								<span class="text-info pr-1"> Order Notes:</span>
+								<span class="float-right pr-2"> <%= order.notes %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mt-4 mb-1">
+								<span class="text-info pr-1"> Total Items:</span>
+								<span class="float-right pr-2"> <%= order.cart.totalQty %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mb-1">
+								<span class="text-info pr-1"> Total Price:</span>
+								<span class="float-right pr-2"> $<%= order.cart.totalPrice %> </span>
+							</p>
+							<div class="clearfix"></div>
+							<p class="mb-1">
+								<span class="text-info pr-1"> Order Status:</span>
+								<span class="float-right pr-2"> <%= order.status %> </span>
+							</p>
+							<div class="clearfix"></div>
+
+							<% if (order.status == 'Cancel Requested') { %>
+
+							<p class="mt-5 mb-1">
+								<span class="text-warning pr-1"> Cancellation Reason:</span>
+								<span class="float-right pr-2"> <%= order.reason %> </span>
+							</p>
+							<div class="clearfix"></div>
+
+							<% } %>
+						</div>
+					</div>
+
+					<% } %>
+				</div>
+
+				<% Object.keys(items).forEach(item => { %>
+
+				<hr style="background-color: #bad0d3 !important; height: 0.3px; border: none !important; width: 100%; margin: 50px 0px 0px 0px" />
+
+				<div class="row mb-5 mt-5">
+					<div class="col-md-8">
+						<div class="artwork-img">
+							<% if (items[item].item.file.length > 1 ) { %> <% items[item].item.file.forEach(f => { %>
+							<div class="col-md-6 float-left mb-2" style="padding-left: 0px; padding-right: 0px">
+								<img src="/uploads/<%= f %> " alt="" class="img-thumbnail" style="width: 100%; min-height: 160px" />
+							</div>
+
+							<% }) %>
+							<div class="clearfix"></div>
+							<% } else { %>
+
+							<div class="col-md-12" style="padding-left: 5px; padding-right: 5px">
+								<div>
+									<img src="/uploads/<%= items[item].item.file[0] %>" alt="" class="img-thumbnail" style="width: 100%; height: auto" />
+								</div>
+							</div>
+							<% } %>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="artwork-text">
+							<h4 class="text-info mb-3"><%= items[item].item.title %></h4>
+							<p><span class="text-info"> Artist:</span> <%= items[item].item.artist %></p>
+							<p><span class="text-info"> Size:</span> <%= items[item].item.size %></p>
+							<p><span class="text-info"> Condition:</span> <%= items[item].item.condition %></p>
+							<p><span class="text-info"> Medium:</span> <%= items[item].item.medium %></p>
+							<p><span class="text-info"> Category:</span> <%= items[item].item.category %></p>
+							<p><span class="text-info"> Buying Format:</span> <%= items[item].item.buyingFormat %></p>
+							<p class="mt-2"><span class="text-info"> Original Price: </span> $<%= items[item].item.price %></p>
+
+							<% if(items[item].item.buyingFormat == 'Discount') { %>
+
+							<p><span class="text-success"> Discount Price:</span> $<%= items[item].item.discountPrice %></p>
+
+							<% } %>
+
+							<p class="mt-2"><span class="text-info"> Total Quantity:</span> <%= items[item].qty %></p>
+							<p><span class="text-info"> Total Price: </span> $<%= items[item].price %></p>
+						</div>
+					</div>
+				</div>
+
+				<% }) %>
+			</div>
+		</div>
+	</div>
+</div>

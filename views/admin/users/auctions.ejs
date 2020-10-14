@@ -1,0 +1,44 @@
+<style>
+	.centerBtn {
+		display: inline-block;
+	}
+</style>
+
+<h2 class="mt-3 mb-3 text-info">Bidded Artworks</h2>
+
+<table class="table table-bordered mt-4 text-center">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Image</th>
+			<th scope="col">Title</th>
+			<th scope="col">Status</th>
+			<th scope="col">Time Remaining</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% artworks.forEach(a => { %>
+		<tr>
+			<td><img alt="" src="/uploads/<%= a.file %>" width="200" /></td>
+			<td><%= a.title %></td>
+			<td><%= a.bidInfo.status %></td>
+			<td><%= timer(a.startDate,a.endDate) %></td>
+			<td>
+				<div class="text-left">
+					<a style="padding: 4.5px 19px !important" href="/home/biddingroom/placebid/<%= a.id %>" class="btn btn-success btn-sm float-left mt-1 ml-1">View</a>
+
+					<% if (a.bidInfo.status == 'Auction Ended' && a.bidInfo.bidder != user.username) { %>
+					<a style="padding: 4.5px 13px !important" href="/admin/users/deleteBid/<%= a.id %>/bidder" class="btn btn-danger btn-sm mt-1 ml-1">Remove</a>
+					<% } %> <% if (a.bidInfo.status == 'Auction Ended' && a.bidInfo.bidder == user.username) { %>
+					<a style="padding: 4.5px 11px !important" href="/home/order/placeorder/<%= a.id %>" class="btn btn-info btn-sm mt-1 ml-1">Checkout</a>
+
+					<% } %> <% if (a.bidInfo.status == 'Sold' && a.artist != user.username) { %>
+					<a style="padding: 4.5px 13px !important" href="/admin/users/deletebid/<%= a.id %>/bidder" class="btn btn-danger btn-sm mt-1 ml-1">Remove</a>
+					<% } %>
+				</div>
+			</td>
+		</tr>
+		<% }) %>
+	</tbody>
+</table>

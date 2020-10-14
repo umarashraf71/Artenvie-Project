@@ -1,0 +1,540 @@
+<style>
+  h5 {
+    font-size: 18px !important;
+  }
+</style>
+
+<div class="container">
+  <% if (user.roles.includes('admin')) { %>
+  <h1 class="mt-4 mb-5 text-info">Dashboard</h1>
+  <div class="row col-11 mt-5 ml-3 mr-5">
+    <canvas id="myChart"></canvas>
+  </div>
+  <% } %> <% if (user.userType == 'Artist' || user.userType == 'Customer') { %>
+
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 20px">
+      <div
+        class="col-md-9 my-3"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 40px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h1 class="mt-2 mb-3 text-info">Dashboard</h1>
+        <div class="mt-3">
+          <h4 class="text-info">Terms and Descriptions</h4>
+
+          <p class="mb-4">
+            <strong class="text-secondary"
+              >Detailed description of all the application terms and their
+              descriptions
+            </strong>
+          </p>
+
+          <!--Accordion wrapper-->
+          <div
+            class="accordion md-accordion"
+            id="accordionEx"
+            role="tablist"
+            aria-multiselectable="true"
+          >
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingOne1">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseOne1"
+                  aria-expanded="true"
+                  aria-controls="collapseOne1"
+                >
+                  <h5 class="mb-0 text-info">
+                    Inbox
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseOne1"
+                class="collapse show"
+                role="tabpanel"
+                aria-labelledby="headingOne1"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end-->
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingTwo2">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseTwo2"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo2"
+                >
+                  <h5 class="mb-0 text-info">
+                    Profile Management
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseTwo2"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingTwo2"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end-->
+
+            <% if (user.userType == 'Artist') { %>
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree3"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Artwork Upload
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree3"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree4"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Artworks Management
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree4"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <% } else {%>
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree9"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Bidded Auction Artworks
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree9"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <% } %>
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree8"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Order Management
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree8"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <% if (user.userType == 'Artist') { %>
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree5"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Reviews and Ratings
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree5"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <% } else { %>
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree10"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Wishlist
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree10"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <% } %>
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree6"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Contact Admin
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree6"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+
+            <!-- Accordion card -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree7"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0 text-info">
+                    Admin Messages
+                    <i class="fas fa-angle-down rotate-icon"></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree7"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card end -->
+          </div>
+          <!-- Accordion wrapper -->
+        </div>
+
+        <% } %>
+      </div>
+
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+        integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI="
+        crossorigin="anonymous"
+      ></script>
+
+      <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [
+              'Users',
+              'Artworks',
+              'Categories',
+              'Orders',
+              'Commments',
+              'Queries',
+              'Reviews',
+            ],
+            datasets: [
+              {
+                label: 'ArtEnvie',
+                data: [
+                  '<%= userCount %>',
+                  '<%= artworkCount %>',
+                  '<%= categoryCount %>',
+                  '<%= orderCount %>',
+                  '<%= commentCount %>',
+                  '<%= queryCount %>',
+                  '<%= reviewCount %>',
+                ],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+          },
+        });
+      </script>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 30px">
+      <div
+        class="col-md-8"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 20px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-2 mb-4 text-info" style="margin-left: -15px !important">
+          Reviews and Ratings
+        </h2>
+
+        <% reviews.forEach(review => { %>
+
+        <div
+          class="row mb-3"
+          style="border-top: 0.5px solid #bad0d3 !important; padding-top: 12px"
+        >
+          <div class="col-md-3 mt-2 mb-2">
+            <div class="row">
+              <div class="artwork-img">
+                <img
+                  src="/uploads/users/<%= review.customerImage %>"
+                  alt=""
+                  class="img-fluid rounded-circle"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9 mt-2 mb-2" style="margin-left: -10px">
+            <div class="wishlist-artwork-text">
+              <a href="">
+                <h3 style="margin-bottom: 15px" class="ml-1 text-info">
+                  <%= review.customerName %>
+                </h3>
+              </a>
+
+              <p class="ml-1">
+                <span class="text-info mr-2"> Rating:</span>
+                <span class="text-warning"
+                  ><i class="fas fa-star"></i>
+                  <%= review.rating %>
+                </span>
+              </p>
+              <p class="ml-1">
+                <span class="text-info mr-2"> Review:</span>
+                <%= review.review %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

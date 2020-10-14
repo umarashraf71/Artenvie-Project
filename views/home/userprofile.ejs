@@ -1,0 +1,35 @@
+<style>
+	.row {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.row div {
+		text-align: center;
+	}
+</style>
+
+<div class="container">
+	<div class="row mt-5"></div>
+	<div class="row mt-5"></div>
+	<div class="row mt-5"></div>
+	<div class="row">
+		<div class="col-lg-3">
+			<img
+				src="/uploads/users/<%= bidUser.image %> "
+				alt=""
+				title="<%= bidUser.name %> "
+				style="width:100%;"
+				class="img-thumbnail "
+			/>
+		</div>
+		<div class="col-lg-3">
+			<h1><%= bidUser.name.toUpperCase() %></h1>
+			<p><a href="mailto:<%= bidUser.email %> "><%= bidUser.email %></a></p>
+			<button class="btn btn-outline-dark">
+				Message <%= bidUser.name.split(' ')[0] %>
+			</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 30px">
+      <div
+        class="col-md-7"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 40px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-2 mb-4 text-info">Inbox</h2>
+
+        <% if (customer) { %> <%# chatroom.forEach(chatroom => { %> <% for( let
+        i = chatroom.length - 1; i >= 0 ; i-- ) { %>
+
+        <hr
+          style="
+            background-color: #bad0d3 !important;
+            height: 0.3px;
+            border: none !important;
+            width: 100%;
+            margin-top: 20px;
+          "
+        />
+
+        <div class="">
+          <div class="row">
+            <div class="col-md-2 mt-2 ml-3 mr-3">
+              <div class="row">
+                <div class="inbox-artwork-img">
+                  <img
+                    src="/uploads/users/<%= chatroom[i].artistId.image %>"
+                    alt=""
+                    height="90"
+                    width="90"
+                    class=" "
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 mt-2">
+              <div class="inbox-artist-text">
+                <h5><%= chatroom[i].artistId.username %></h5>
+                <a
+                  style="padding: 4px 12px !important"
+                  href="/admin/inbox/chat/<%= chatroom[i].roomId %>/<%= chatroom[i].artistId.username %>"
+                  class="btn btn-info btn-sm"
+                  >Start Chat</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %> <% } else { %> <%# chatroom.forEach(chatroom => { %> <% for( let
+        i = chatroom.length - 1; i >= 0 ; i-- ) { %>
+
+        <hr
+          style="
+            background-color: #bad0d3 !important;
+            height: 0.3px;
+            border: none !important;
+            width: 100%;
+            margin-top: 20px;
+          "
+        />
+
+        <div class="">
+          <div class="row">
+            <div class="col-md-2 mt-2 ml-3 mr-3">
+              <div class="row">
+                <div class="inbox-artwork-img">
+                  <img
+                    src="/uploads/users/<%= chatroom[i].customerId.image %>"
+                    alt=""
+                    height="90"
+                    width="90"
+                    class=" "
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 mt-2">
+              <div class="inbox-artist-text">
+                <h4><%= chatroom[i].customerId.username %></h4>
+                <a
+                  style="padding: 4px 12px !important"
+                  href="/admin/inbox/chat/<%= chatroom[i].roomId %>/<%= chatroom[i].customerId.username %>"
+                  class="btn btn-info btn-sm"
+                  >Start Chat</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% } %> <% } %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,379 @@
+:root {
+  --textColor: rgb(223, 189, 36);
+  --font: 'Rubik', sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif !important;
+}
+
+.multiple {
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  gap: 5px;
+  margin: 10px;
+}
+
+.multiple img {
+  height: 150px;
+  width: 100%;
+  transition: transform 0.2s linear;
+  transform-style: preserve-3d;
+}
+
+.multiple img:hover {
+  transform: scale(2);
+}
+
+.magnifier-thumb-wrapper {
+  position: relative;
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+.magnifier-lens {
+  position: absolute;
+  border: solid 1px #ccc;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.magnifier-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: solid 1px #ccc;
+  color: #fff;
+  text-align: center;
+  background: transparent;
+  background: rgba(50, 50, 50, 0.5);
+  z-index: 1000;
+  -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F323232,endColorstr=#7F323232)';
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F323232, endColorstr=#7F323232);
+}
+
+.magnifier-loader-text {
+  font: 13px Arial;
+  margin-top: 10px;
+}
+
+.magnifier-large {
+  position: absolute;
+  z-index: 100;
+}
+
+.magnifier-preview {
+  padding: 0;
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.magnifier-preview img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.opaque {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+}
+
+.hidden {
+  display: none;
+}
+
+.img-magnifier-container {
+  position: relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  cursor: none;
+  width: 120px;
+  height: 120px;
+}
+
+.related-artworks h3 {
+  color: var(--textColor);
+  font-weight: 400;
+  font-size: 2.2em;
+  word-spacing: 0.21em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* .artwork-img .big img
+{
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.3) !important; 
+} */
+
+.artwork-text-line {
+  margin: 0 auto;
+  width: 100%;
+  height: 1px;
+  background: rgb(214, 212, 212);
+}
+
+.artwork-text {
+  text-align: left;
+  border: 1px solid rgb(220, 220, 220);
+  background: rgb(248, 248, 248);
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 3px;
+  padding: 1em 20px;
+  height: auto;
+  font-size: 1em;
+}
+
+.artwork-text .artwork-text-head {
+  color: var(--textColor) !important;
+  font-weight: 400;
+  font-size: 1.03em;
+}
+
+.artwork-text h3 {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: black;
+}
+
+.artwork-text h4 a {
+  text-decoration: none;
+  color: var(--textColor);
+
+  font-weight: 400 !important;
+}
+
+.artwork-text h4 {
+  margin-top: -2px;
+  margin-bottom: 13px;
+  font-size: 1.2em;
+}
+
+.artwork-text p {
+  padding: 2px 0;
+  margin: 0;
+  font-size: 1.02em;
+  font-weight: 200;
+  color: black;
+}
+
+.artwork-text p span {
+  font-weight: 400;
+  color: black;
+  font-size: 1.02em;
+}
+
+.btn.btn-secondary {
+  background-color: black !important;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-left: -2px;
+  color: white;
+  font-weight: 400;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #dfbd24 !important;
+  border: 1px solid #dfbd24 !important;
+  color: white;
+  font-weight: 400;
+}
+
+.wishlist i {
+  margin-top: 12px;
+  font-size: 30px;
+  color: var(--textColor);
+}
+
+/*
+.fa {
+  user-select: none;
+}
+
+.fa:hover {
+  color: var(--textColor);
+}
+*/
+
+.card {
+  margin-top: 40px !important;
+}
+
+.card-header {
+  background-color: black !important;
+  color: white;
+  padding: 7px 21px;
+  font-weight: 400;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-text {
+  text-align: justify !important;
+}
+
+.related-artworks h3 {
+  color: var(--textColor);
+  font-weight: 400;
+  font-size: 2em;
+  word-spacing: 0.1em;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.card-padd {
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+}
+
+.card-body {
+  padding-bottom: 15px !important;
+  background-color: rgb(243, 243, 243);
+}
+
+.inner {
+  overflow: hidden;
+}
+
+.inner img {
+  transition: all 1.5s ease;
+  height: 180px !important;
+}
+
+.inner:hover img {
+  transform: scale(1.5);
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.artist-name p {
+  font-weight: 400;
+  font-size: 19px;
+  margin: 0px;
+  padding-bottom: 2px;
+}
+
+.artwork-category p {
+  font-size: 16px;
+  margin-top: -15px;
+  color: #dfbd24;
+  padding-bottom: 5px;
+}
+
+.buying-format p {
+  margin-top: -10px;
+  font-size: 16px;
+  color: #dfbd24;
+}
+
+.card h5 {
+  color: black;
+}
+
+.btn.btn-primary {
+  background-color: black !important;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px 15px;
+  margin-left: -2px;
+  color: white;
+  font-weight: 400;
+}
+
+.btn.btn-primary:hover {
+  background-color: #dfbd24 !important;
+  border: 1px solid #dfbd24 !important;
+  color: white;
+  font-weight: 400;
+}
+
+/*Special offer artwork*/
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  margin-top: 5px;
+  width: 25%;
+  padding: 3px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8;
+  cursor: pointer;
+  height: 100px;
+}
+
+.column img:hover {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+/* Clear floats after the columns */
+
+.image-gallery {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+/* The expanding image container */
+.big {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+.big img {
+  width: 100%;
+  max-height: 360px;
+}
+
+.comment-wrapper .panel-body {
+  max-height: 650px;
+  overflow: auto;
+  margin-left: -30px;
+}
+
+.comment-wrapper .panel .panel-heading {
+  font-weight: 400 !important;
+  color: black;
+  font-size: 18px;
+}
+
+.comment-wrapper .media-list .media img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 25px;
+}
+
+.media .media-body .text-success {
+  color: var(--textColor) !important;
+  font-weight: 500;
+}

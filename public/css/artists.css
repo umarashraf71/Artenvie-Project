@@ -1,0 +1,130 @@
+:root {
+	--textColor: rgb(223, 189, 36);
+	--font: 'Rubik', sans-serif;
+	/* --textColor: rgb(245, 245, 245); */
+  }
+  
+  body
+  {
+	  margin:0 auto;
+	  padding:0;
+	box-sizing: border-box;
+	font-family: 'Rubik', sans-serif !important;
+  }
+
+ 
+  .details {
+	text-align: center;
+	padding: 1em;
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+	margin-top: 3em;
+  }
+  
+  .details .img img {
+	width: 200px;
+	height: 195px;
+	border-radius: 100%;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.3); 
+	border: 1px solid black;
+  }
+  
+  .details .img img:hover
+  {
+	transition: 0.5s;
+	box-shadow: 0px 12px 22px rgb(160, 160, 160);
+  }
+  
+  .details .info h3 {
+	margin-top: 1em;
+	font-size: 1.05em;
+	font-weight: 400;
+  }
+  
+  .details .info p {
+	color: #DFBD24;
+	font-size: 1.02em;
+	margin-bottom: 4px;
+  }
+
+  .details .info span
+  {
+	  color: #DFBD24;
+	  margin-left:-5px;
+  }
+  
+  .details .info span i 
+  {
+	  margin-right: 2px;
+	  font-size: 1.1em;
+	  margin-top: 2px;
+  }
+
+  .details .info a {
+	  margin-top: 10px;
+	text-decoration: none;
+	background: black;
+	color: #ffffff;
+	padding: 5px 11px;
+	display: inline-block;
+	-webkit-transition: .3s;
+	transition: .3s;
+	letter-spacing: 0.2px;
+	border-radius: 3px;
+	font-weight: 400;
+	font-size: 0.9em;
+  }
+  
+  .details .info a:hover {
+	background: var(--textColor);
+  }
+  
+  
+  .pages
+  {
+	margin: 0 auto;
+	margin-top: 5em;
+	
+  }
+  
+  .pages .pagination li a
+  {
+	border: 1px solid black !important;
+	color: black !important;
+	font-weight: 400 !important;
+  }
+  
+  .pagination li .active
+  {
+	background-color: var(--textColor) !important;
+  }
+  
+  .page-item.active .page-link
+  {
+	background: black !important;
+	font-weight: 400 !important;
+	color: white !important;
+	border: 1px solid black !important;
+  }
+  .pages .pagination li a:hover
+  {
+	transition: 0.5s;
+	background-color: var(--textColor) !important;
+	color: black !important;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+	.artists .details {
+	  -ms-flex-preferred-size: 48%;
+		  flex-basis: 48%;
+	}
+  }
+  
+  @media screen and (max-width: 592px) {
+	.artists > .details {
+	  -ms-flex-preferred-size: 100%;
+		  flex-basis: 100%;
+	}
+  }
+  /*# sourceMappingURL=artists.css.map */

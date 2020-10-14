@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 20px">
+      <div
+        class="col-md-8"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 30px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-3 mb-4 text-info">Admin Messages</h2>
+
+        <hr
+          style="
+            background-color: #bad0d3 !important;
+            height: 0.3px;
+            border: none !important;
+            width: 100%;
+            margin: 20px 0px 30px 0px;
+          "
+        />
+
+        <% for( let i = user.warnings.length-1; i >= 0; i-- ) { %>
+        <div class="row mb-2">
+          <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+              <h4 class="alert-heading">Message!</h4>
+              <p><%= user.warnings[i] %></p>
+              <hr />
+              <p class="mb-0">By Admin</p>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

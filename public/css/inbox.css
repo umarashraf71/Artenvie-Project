@@ -1,0 +1,23 @@
+.chat-head {
+	box-shadow: 0 0 3px #cccccc;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	height: 80px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.chat-head:hover {
+	box-shadow: 0 2px 5px #cccccc;
+}
+
+.chat-head .img img {
+	width: 80px;
+	height: 80px;
+}
+
+.chat-head .info {
+	margin-bottom: 50px !important;
+}

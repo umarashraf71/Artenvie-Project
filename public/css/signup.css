@@ -1,0 +1,95 @@
+body {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif !important;
+}
+
+.form-wrap h1 {
+    font-size: 48px;
+    padding-bottom: 20px;
+    letter-spacing: 3px;
+    color: #DFBD24;
+    font-weight: 400;
+}
+
+.form-group input {
+    height: 47px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 200;
+    color: black !important;
+}
+
+.form-group select {
+    height: 47px;
+    padding-left: 15px;
+    font-size: 18px;
+    color: black !important;
+    font-weight: 100;
+}
+
+.form-group select option {
+    font-weight: 100;
+}
+
+.form-group label {
+    font-size: 18px;
+    word-spacing: 2px;
+    color: black;
+    margin-top: 15px;
+    font-weight: 100;
+}
+
+.form-group a {
+    color: #DFBD24;
+    font-weight: 400;
+    text-decoration: none !important;
+}
+
+.form-group a:hover {
+    color: black !important;
+}
+
+.btn-primary {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 400;
+    background: none !important;
+    background-color: #DFBD24 !important;
+    border: none !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.btn-primary:hover {
+    transition: 0.3s ease-in-out;
+    color: #DFBD24;
+    background-color: black !important;
+    border-color: black !important;
+    /*set the color you want here*/
+}
+
+::placeholder {
+    color: black !important;
+    font-weight: 100;
+    font-size: 18px !important;
+}
+
+.field-icon {
+    float: right;
+    padding-right: 30px;
+    margin-left: -100px;
+    margin-top: -35px;
+    font-size: 1.3em;
+    color: rgb(59, 59, 59);
+    z-index: 2;
+    position: relative;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

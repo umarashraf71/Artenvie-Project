@@ -1,0 +1,164 @@
+<link rel="stylesheet" href="/css/signup.css" type="text/css" />
+
+
+<div style="margin-top: 90px;">
+	<% if(typeof errors != 'undefined'){ %> <% errors.forEach(function(error) { %>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<%= error.message %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<% }); %> <% } %>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 text-center">
+				<div class="form-wrap">
+					<h1 class="text-center">SIGN UP</h1>
+					<form role="form" action="/home/user/register" method="post" id="login-form"
+						onsubmit="event.preventDefault(); displaySpinner(this,'btn-signup')">
+						<div class=" form-group">
+							<input required type="text" name="name" id="username" class="form-control"
+								placeholder="Name" value='<%= typeof name !=
+						'undefined' ? name : '' %>' />
+						</div>
+
+						<div class="form-group">
+							<input required type="email" name="email" id="email" class="form-control"
+								placeholder="Email" value='<%= typeof email !=
+						'undefined' ? email : '' %>' />
+						</div>
+
+						<div class="form-group">
+							<select class="form-control" id="sel1" name="usertype">
+								<option hidden>User Type</option>
+								<option value="Artist"
+									<%= selected(typeof userType != 'undefined'?userType:'','Artist')%>>
+									Artist</option>
+								<option value="Customer"
+									<%= selected(typeof userType != 'undefined'?userType:'','Customer')%>>
+									Customer
+								</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<input required type="text" name="username" class="form-control" placeholder="Username"
+								value='<%= typeof
+						username != 'undefined' ? username : '' %>' />
+						</div>
+
+						<% if (typeof userNames != 'undefined') { %>
+						<div class="form-group">
+							<h6 class="text-success"> Username Suggestions: </h6>
+							<% userNames.forEach(name => { %>
+							<%= name %>,
+							<% }) %>
+						</div>
+						<% } %>
+
+						<div class="form-group">
+							<h6 style="font-size:14.5px" id="pwdMessage" class="mt-1"></h6>
+
+							<input required type="password" name="password" id="password" class="form-control"
+								placeholder="Password" minlength="8" onkeyup="validatePassword(this.value);" />
+
+							<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"
+								onclick="toggleVisibility(this,'password')"></span>
+
+						</div>
+
+						<div class="form-group">
+							<input required type="password" name="confirmPassword" id="confirmPassword"
+								class="form-control" placeholder="Confirm Password" minlength="8" />
+
+							<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"
+								onclick="toggleVisibility(this,'confirmPassword')"></span>
+						</div>
+
+						<input class="btn btn-primary btn-block btn-lg" type="submit" name="login" id="btn-signup"
+							value="Sign up" />
+
+						<div class="form-group">
+							<label for="login" class="text-center">Already have account ? <a href="/home/login">Log
+									in</a></label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		const pwdFields = document.querySelectorAll('input[type=password]');
+
+		$(".toggle-password").click(function () {
+			$(this).toggleClass("fa-eye fa-eye-slash");
+		});
+
+		function toggleVisibility(icon, field) {
+			const f = document.getElementById(field)
+
+			if (f.getAttribute('type') == 'password')
+				f.setAttribute('type', 'text')
+			else if (f.getAttribute('type') == 'text')
+				f.setAttribute('type', 'password')
+		}
+
+		function validatePassword(password) {
+			const msg = document.getElementById('pwdMessage');
+
+			if (password.length == 0) {
+				msg.innerHTML = "";
+				return;
+			}
+
+			let matchedCase = new Array();
+			matchedCase.push("[$@$!%*#?&]");
+			matchedCase.push("[A-Z]");
+			matchedCase.push("[0-9]");
+			matchedCase.push("[a-z]");
+			let ctr = 0;
+
+			for (let i = 0; i < matchedCase.length; i++) {
+				if (new RegExp(matchedCase[i]).test(password)) {
+					ctr++;
+				}
+			}
+			let color = "";
+			let strength = "";
+			switch (ctr) {
+				case 0:
+				case 1:
+				case 2:
+					strength = "Weak Password ( Include Uppercase, Numbers and Special Characters )";
+					color = "red";
+					break;
+				case 3:
+					strength = "Medium Password ";
+					color = "orange";
+					break;
+				case 4:
+					strength = "Strong Password";
+					color = "green";
+					break;
+			}
+			msg.innerHTML = strength;
+			msg.style.color = color;
+			/* var minMaxLength= /^[\s\S]{8,32}$/, upper= /[A-Z]/,
+			lower= /[a-z]/, number= /[0-9]/, special= /[ !"#$%&'()*+,\-./:; <=>?@[\\\]^_`{|}~]/;
+
+			if (minMaxLength.test(password) &&
+			upper.test(password) &&
+			lower.test(password) &&
+			number.test(password) &&
+			special.test(password)
+			) {
+			return true;
+			}
+
+			return false; */
+		}
+	</script>

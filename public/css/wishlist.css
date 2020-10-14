@@ -1,0 +1,14 @@
+.row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	border: 1px solid #cccccc;
+	margin-top: 1em;
+}
+
+.row div {
+	flex: 1;
+	display: grid;
+	place-content: center;
+}

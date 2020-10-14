@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%; overflow-x:hidden !important;">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="icon" href="/images/front-logo.png" type="image/png" />
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+	<link rel="stylesheet" href="/css/scrollbar.css" />
+	<link rel="stylesheet" href="/css/spinner.css" />
+
+	<% if (route !== '/home') { %>
+	<link rel="stylesheet" href="/css/navbar.css" />
+	<link rel="stylesheet" href="/css/header.css" />
+	<% } %> <% if (route === '/home') { %>
+	<link rel="stylesheet" href="/css/home.css" type="text/css" />
+	<% } %>
+
+	<link rel="stylesheet" href="/css/footer.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap" rel="stylesheet" />
+
+	<script src="https://code.jquery.com/jquery-3.5.0.js"
+		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+	<title><%= title %></title>
+</head>
+
+<body style="min-height: 100%; padding: 0; margin: 0; position: relative">
+	<div class="spinner">
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<a href="#top" onclick="scrollToTop();return false" id="myBtn">Top &uarr;</a>
+
+	<% if (route === '/home') { %>
+	<%- include('../partials/home/homebar') %>
+	<% } %>
+
+	<% if (route !== '/home') { %>
+	<%- include('../partials/home/navbar') %> <%- include('../partials/home/form-messages') %>
+	<% } %>
+
+	<script src="/socket.io/socket.io.js"></script>
+
+	<div style="padding-bottom: 200px"><%- body %></div>
+	<%- include('../partials/home/footer') %>
+
+	<!--##############################################################
+		######################### JAVASCRIPT #########################
+		############################################################## -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="/js/caroufredsel.js"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+	<script type="text/javascript">
+		const spinner = document.querySelector('.spinner');
+
+		function displaySpinner(form, btn) {
+			const submitBtn = document.getElementById(btn);
+			submitBtn.setAttribute('disabled', true);
+
+			spinner.style.display = 'flex';
+			form.submit();
+
+			setTimeout(() => {
+				spinner.style.display = 'none'
+			}, 5000);
+		}
+
+		$(function () {
+			$(document).scroll(function () {
+				var $nav = $('.fixed-top');
+				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+			});
+		});
+
+		$(function () {
+			$(document).scroll(function () {
+				var $nav = $('.dropdown-menu');
+				$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+			});
+		});
+
+		function scrollToTop() {
+			var position = document.body.scrollTop || document.documentElement.scrollTop;
+			if (position) {
+				window.scrollBy(0, -Math.max(1, Math.floor(position / 4)));
+				scrollAnimation = setTimeout('scrollToTop()', 40);
+			} else clearTimeout(scrollAnimation);
+		}
+
+		mybutton = document.getElementById('myBtn');
+
+		window.onscroll = function () {
+			if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) mybutton.style.display =
+				'block';
+			else mybutton.style.display = 'none';
+		};
+
+		AOS.init({
+			duration: 1500,
+		});
+	</script>
+	<script src="/js/main.js"></script>
+
+</body>
+
+</html>

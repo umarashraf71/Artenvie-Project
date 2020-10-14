@@ -1,0 +1,147 @@
+:root {
+	--textColor: rgb(223, 189, 36);
+	--font: 'Rubik', sans-serif;
+  }
+  
+  body
+  {
+	  margin:0 auto;
+	  padding:0;
+	box-sizing: border-box;
+    font-family: 'Rubik', sans-serif !important;
+    overflow-x:hidden ;
+  }
+
+.wrapper1 
+{
+  text-align: center;
+  margin-top: 1em;
+}
+  
+
+.wrapper1 .table
+{
+    margin-top: 3em;
+    text-align: center;
+    border: 1px solid black !important;
+}
+
+.table td
+{
+    vertical-align:middle;
+    font-size: 17px;
+    border: 1px solid rgb(161, 157, 157) !important;
+}
+
+.table th
+{
+    border: 1px solid rgb(161, 157, 157) !important;
+    background-color: black;
+    border: 1px solid black !important;
+    padding: 16px !important;
+    color: var(--textColor);
+    font-weight: 400;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.tr-img
+{
+    padding: 0 !important;
+    vertical-align:middle;
+}
+.tr-img img
+{
+    width: 120px !important;
+    padding: 5px;   
+}
+
+.table td span a
+{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.table td span a:hover
+{
+    color: var(--textColor);
+    transition: 0.3s ease-in;
+}
+
+
+
+.cart
+{
+    margin-top: 40px;
+    padding: 10px;
+}
+
+.cart h3
+{
+    font-size: 1.3em;
+    word-spacing: 2px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.cart p
+{
+    font-size: 1.02em;
+}
+
+.cart-text-head
+{
+    color: var(--textColor) !important;
+	font-weight: 500;
+}
+
+
+.btn.btn-primary
+{
+    background-color: black !important;
+	border: 1px solid black;
+	border-radius: 3px;
+    color: white;
+    padding: 7px 0px;
+}    
+
+.btn-primary a
+{
+    font-size: 1.12em;
+    font-weight: 400 !important;
+    text-decoration: none;
+    color: white;
+}
+.btn.btn-primary:hover {
+	background-color: #dfbd24 !important;
+	border: 1px solid #dfbd24 !important;
+	color: white;
+	
+}
+
+.btn-primary a:hover {
+	color: white;
+	
+}
+
+.empty-cart
+{
+    margin-top: 130px;
+}
+
+.icon
+{
+    color: black;
+    font-size: 21px;
+    padding: 5px;
+}
+
+.icon:hover
+{
+    color: var(--textColor);
+    transition: 0.3s ease-in-out;
+}

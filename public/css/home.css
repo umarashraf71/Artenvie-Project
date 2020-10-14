@@ -1,0 +1,485 @@
+/********************** BODY ***********************/
+body {
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Rubik', sans-serif !important;
+	overflow-x: hidden !important;
+}
+
+/**************************************************************************************/
+
+.container-fluid {
+	padding: 0 !important;
+	overflow: hidden;
+}
+
+/********************** HEADER CLASS COVERS NAVBAR AND SHOWS FRONT IMAGE ***********************/
+.header {
+	background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/homeFront.jpg');
+	width: 100%;
+	min-height: 700px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: none;
+	background-attachment: fixed;
+}
+
+/**************************************************************************************/
+
+/***************************** NAVBAR STYLING ********************************/
+.navbar {
+	padding-top: 13px !important;
+	padding-bottom: 11px !important;
+	display: block !important;
+}
+
+.navbar .navbar-nav {
+	margin: 0 auto;
+}
+
+.nav-img {
+	width: 150px;
+	height: auto;
+}
+
+.navbar .nav-item a {
+	color: #dfbd24 !important;
+	font-weight: 400;
+	font-size: 17px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	word-spacing: 1px;
+	padding-left: 20px !important;
+}
+
+.navbar .nav-item a:hover {
+	color: white !important;
+	transition: 0.5s ease-in-out;
+}
+
+.navbar .dropdown-menu {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item:hover {
+	color: white !important;
+	background: none !important;
+	transition: 0.5s ease-in-out;
+}
+
+/**************************************************************************************/
+
+/********************** NAVBAR TOGGLER WHEN SCREEN SIZE IS LESS THAN 768PX ***********************/
+.custom-toggler.navbar-toggler {
+	margin-top: 10px;
+	cursor: pointer;
+	margin-left: -25px !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.custom-toggler .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(223, 189, 36)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/**************************************************************************************/
+
+/********************** STYLING NAVBAR WHEN SCROLLED ***********************/
+.fixed-top.scrolled {
+	background-color: black !important;
+	transition: 0.6s ease-in-out;
+}
+
+/**************************************************************************************/
+
+/********************** STYLING DROPDOWN WHEN SCROLLED ***********************/
+.dropdown-menu.scrolled {
+	background-color: black !important;
+}
+
+/**************************************************************************************/
+
+/********************** FRONT LOGO CLASS WITH IMAGE AND BUTTON STYLING UNDER NAVBAR ***********************/
+.front-logo {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.front-logo .img {
+	margin-top: 200px;
+	width: 500px;
+}
+
+.front-logo #btn {
+	display: inline-block;
+	margin: 0 auto;
+	margin-top: 30px;
+	display: block;
+	padding: 12px 40px 12px 40px;
+	font-size: 17px;
+	color: white;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	background: none;
+	border-radius: 3px;
+	border: 1px solid #dfbd24;
+}
+
+.front-logo #btn a {
+	text-decoration: none;
+	color: #dfbd24;
+}
+
+.front-logo #btn:hover {
+	background-color: black;
+	color: white;
+	border: 1px solid #dfbd24;
+	transition: 0.5s ease;
+}
+
+/**************************************************************************************/
+
+/********************** STYLING QUOTE 1 AFTER HEADER  ***********************/
+.quote1 h2 {
+	color: #dfbd24;
+	font-weight: 400 !important;
+	font-size: 35px !important;
+	word-spacing: 5px !important;
+}
+
+.quote-text {
+	font-size: 19px !important;
+	text-align: center !important;
+	font-weight: 300 !important;
+}
+
+/**************************************************************************************/
+
+/********************** STYLING DESCRIPTION ICONS WITH TEXT ***********************/
+.icon1 span {
+	font-size: 70px;
+	color: #dfbd24;
+}
+
+.icon1 h4 {
+	color: #dfbd24;
+	text-transform: uppercase;
+	font-size: 23px;
+	font-weight: 400;
+	word-spacing: 3px;
+	letter-spacing: 1px;
+}
+
+.icon-text {
+	text-align: justify;
+	font-size: 17px;
+	font-weight: 350;
+}
+
+/**************************************************************************************/
+
+/********************** STYLING TOP QUALITY ARTWORKS ***********************/
+
+.card-body {
+	padding-bottom: 15px !important;
+	background-color: rgb(243, 243, 243);
+}
+
+.inner {
+	overflow: hidden;
+}
+
+.inner img {
+	transition: all 1.5s ease;
+	height: 200px !important;
+}
+
+.inner:hover img {
+	transform: scale(1.5);
+}
+
+.card-title {
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.artist-name p {
+	font-weight: 400;
+	font-size: 19px;
+	margin: 0px;
+	padding-bottom: 2px;
+}
+
+.artwork-category p {
+	font-size: 16px;
+	margin-top: -15px;
+	color: #dfbd24;
+	padding-bottom: 5px;
+}
+
+.buying-format p {
+	margin-top: -10px;
+	font-size: 16px;
+	color: #dfbd24;
+}
+
+.card h5 {
+	color: black;
+}
+
+.btn.btn-primary {
+	background-color: black !important;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 5px 15px;
+	margin-left: -2px;
+}
+
+.btn.btn-primary:hover {
+	background-color: #dfbd24 !important;
+	border: 1px solid #dfbd24 !important;
+}
+
+/**************************************************************************************/
+
+/********************** STYLING TOP RATED ARTISTS ***********************/
+.artist-title {
+	font-weight: 400;
+}
+
+.artist-format {
+	color: #dfbd24;
+	font-size: 18px;
+}
+
+/**************************************************************************************/
+
+/********************** STYLING CUSTOMER TESTIMONIALS ***********************/
+.testimonials {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/testimonial2.jpg');
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: none;
+	background-attachment: fixed;
+	min-height: 300px;
+}
+
+.testimonials img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-left: 15px;
+}
+
+.testimonials p {
+	color: white;
+	text-align: justify;
+	font-size: 17px;
+	font-weight: 100;
+}
+
+.testimonials .name {
+	color: #dfbd24;
+	font-weight: 300;
+	font-size: 17px;
+	margin-top: 13px;
+	margin-left: 10px;
+}
+
+/**************************************************************************************/
+
+/********************** MEDIA QUERY FOR SCREENS LESS THAN 768PX ***********************/
+
+@media (max-width: 768px) {
+	/********************** HEADER CLASS COVERS NAVBAR AND SHOWS FRONT IMAGE ***********************/
+	.header {
+		min-height: 600px;
+	}
+
+	/********************** NAVBAR AND DROPDOWN STYLING ***********************/
+	.navbar {
+		background-color: black !important;
+		padding-top: 5px !important;
+	}
+
+	.navbar .dropdown-menu {
+		text-align: center;
+		transition: 0.3s;
+	}
+
+	.profile-img img {
+		margin-left: 10px !important;
+	}
+
+	.navbar .nav-item a {
+		padding-left: 10px !important;
+	}
+
+	/********************** FRONT LOGO CLASS WITH IMAGE AND BUTTON STYLING UNDER NAVBAR ***********************/
+	.front-logo .img {
+		margin-top: 200px;
+		width: 350px;
+	}
+
+	.front-logo #btn {
+		margin-bottom: 50px;
+		padding: 10px 30px 10px 30px;
+	}
+
+	/* .dropdown-item
+  {
+    margin-left: -20px !important;
+  } */
+}
+
+/**************************************************************************************/
+
+/********************** MEDIA QUERY FOR SCREENS BETWEEN 766PX & 992PX ***********************/
+
+@media (min-width: 768px) and (max-width: 992px) {
+	.custom-toggler.navbar-toggler {
+		margin-top: 10px;
+		cursor: pointer;
+		margin-left: -6px !important;
+	}
+	.profile-img img {
+		margin-left: 10px !important;
+	}
+	.navbar {
+		background-color: black !important;
+		padding-top: 5px !important;
+	}
+
+	.navbar .dropdown-menu {
+		text-align: center;
+		transition: 0.3s;
+	}
+
+	.navbar .nav-item a {
+		padding-left: 10px !important;
+	}
+
+	/********************** FRONT LOGO CLASS WITH IMAGE AND BUTTON STYLING UNDER NAVBAR ***********************/
+	.front-logo .img {
+		margin-top: 200px;
+		width: 350px;
+	}
+
+	.front-logo #btn {
+		margin-bottom: 50px;
+		padding: 10px 30px 10px 30px;
+	}
+}
+
+/********************** STYLING THE SLIDER WITH RESPECT TO DIFFERENT SCREENS ***********************/
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.carousel-item img {
+		height: 290px;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.carousel-item img {
+		height: 390px;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.carousel-item img {
+		height: 490px;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.carousel-item img {
+		height: 590px;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.carousel-item img {
+		height: 670px;
+	}
+}
+
+/**************************************************************************************/
+
+.more-feature-area {
+	position: relative;
+	padding: 90px 0px;
+	text-align: center;
+}
+
+.more-feature-area img {
+	margin-left: 30px;
+	height: 500px;
+	width: auto;
+}
+
+.feature-list ul {
+	list-style: none;
+	text-align: left;
+	margin-top: 30px;
+}
+
+.feature-list li {
+	position: relative;
+	margin-bottom: 40px;
+	padding-left: 80px;
+}
+
+.feature-list li :hover i {
+	color: white;
+	background-color: #dfbd24;
+	transition: 0.3s ease;
+	-webkit-transition: 0.3s ease;
+	-moz-transition: 0.3s ease;
+	-ms-transition: 0.3s ease;
+	-o-transition: 0.3s ease;
+}
+
+.feature-iconn {
+	position: absolute;
+	top: 13%;
+	left: 0;
+}
+
+.feature-iconn i {
+	width: 63px;
+	height: 63px;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 30px;
+	background: white;
+	color: #dfbd24;
+	border: 2px solid #dfbd24;
+	line-height: 63px;
+}
+
+.feature-details h3 {
+	color: #dfbd24;
+	text-transform: uppercase;
+	font-size: 23px;
+	font-weight: 400;
+	word-spacing: 3px;
+	letter-spacing: 1px;
+}
+
+.feature-details p {
+	font-size: 17px;
+	font-weight: 300;
+}

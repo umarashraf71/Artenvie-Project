@@ -1,0 +1,60 @@
+<div class="container" style="margin-top: 70px; margin-bottom: 25px;">
+		<div class="row">
+			<div class="col-12 text-center related-artworks">
+				<h3>RELATED ARTWORKS</h3>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-3">
+		<div class="row">
+			<% artworks.forEach(artwork => { %>
+
+			<div class="col-md-4 card-padd mt-1">
+				<div class="card shadow" style="width: auto;">
+					<div class="inner img">
+						<a href="/home/productpage/<%=artwork.slug%>">
+							<img class="card-img-top lazy" src="/uploads/<%=artwork.file[0]%>" alt="" />
+						</a>
+					</div>
+
+					<div class="card-body">
+						<h4 class="card-title">
+							<%= artwork.title %>
+						</h4>
+						<div class="buying-format">
+							<p>Buying Format: <%= artwork.buyingFormat %></p>
+						</div>
+						<div class="artwork-category">
+							<p>Category: <%= artwork.category %></p>
+						</div>
+						<div class="artist-name">
+							<p><%= artwork.artist %></p>
+						</div>
+
+						<% if (artwork.buyingFormat == 'Auction') { %>
+						<a href="/home/biddingroom" class="btn btn-primary">View More</a>
+						<% } else { %>
+						<a href="/home/productpage/<%=artwork.slug%>" class="btn btn-primary">View More</a>
+						<% } %> <% if (artwork.buyingFormat != 'Auction' ) { %>
+						<h5 class="mt-2 float-right">
+							<% if (artwork.buyingFormat == 'Discount') { %>
+							<span class="discount pr-2" style="text-decoration: line-through;">
+								$<%= artwork.price %>
+							</span>
+
+							<div class="text-success float-right">
+								$<%= artwork.discountPrice %>
+							</div>
+
+							<div class="clearfix"></div>
+							<% } else { %>
+							<span>$<%= artwork.price %> </span>
+							<% } %>
+						</h5>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<% }) %>
+		</div>
+	</div>

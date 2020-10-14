@@ -1,0 +1,123 @@
+<div class="header">
+
+	<div class="container-fluid">
+		<div class="row text-center">
+			<div class="col-lg-12">
+				<div class="front-logo">
+					<img src="/images/front-logo.png" class="img" />
+					<button id="btn" class="see-more"><a href="" class="btn-see">See More</a></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="container-fluid d-none d-md-block">
+            <div class="row text-center head-logo pt-3">
+                <div class="col-lg-4 offset-lg-4"><img src="../images/home-logo.png" class="img-fluid"></div>
+                <div class="col-lg-4 "></div>
+                <div class="col-lg-4 offset-lg-0"></div>
+            </div>
+        </div> -->
+
+	<nav class="navbar navbar-expand-lg fixed-top">
+		<a class="navbar-brand d-md-none" href="#"><img src="" class="img-fluid nav-img" /></a>
+
+		<button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="/home/artists">Artists</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="/home/categories">Gallery</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Rooms
+					</a>
+
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/home/rooms/General/1">General Room</a>
+						<a class="dropdown-item" href="/home/rooms/Discount/1">Discount Room</a>
+						<a class="dropdown-item" href="/home/rooms/Auction/1">Auction Room</a>
+						<a class="dropdown-item" href="/home/rooms/Special Offer/1">Special Offer Room</a>
+					</div>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Categories
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<% categories.forEach(ctg => { %>
+						<a class="dropdown-item" href="/home/categories/1/<%= ctg.name %>"><%= ctg.name %></a>
+						<% }) %>
+
+						<div class="dropdown-divider" style="border-top: 1px solid #dfbd24 !important"></div>
+						<a class="dropdown-item" href="/home/categories">All Categories</a>
+					</div>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="nav-link" href="/home/about">About us</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link cart-count" href="/home/order/shoppingcart">Cart
+						<% if (typeof session.cart != 'null' && typeof session.cart !==
+							'undefined' && Object.keys(session.cart.items).length > 0) { %>
+						<span>(<%= Object.keys(session.cart.items).length %>)</span>
+						<% } else { %>
+						<span></span>
+						<% }%>
+					</a>
+				</li>
+
+
+				<% if (user == undefined) { %>
+				<li class="nav-item">
+					<a class="nav-link" href="/home/register">Sign up</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/home/login">Login</a>
+				</li>
+
+				<% } if (user != undefined) { %>
+
+
+				<li class="nav-item ml-5">
+					<a class="nav-link" style="margin-left: -48px;" href="/home/logout">Log out </a>
+				</li>
+
+
+				<li class="nav-item ml-2">
+					<a class="nav-link" href="/admin" style="margin-left: -8px;"><%= user.name.split(' ')[0] %> </a>
+				</li>
+				<li class="nav-item profile-img">
+					<img width="42" height="42" src="/uploads/users/<%= user.image %>" alt="profile pic" style="
+								border-radius: 50%;
+								box-shadow: 0px 2px 5px #232323;
+								position: relative;
+								
+							" />
+				</li>
+
+				<% } %>
+
+			</ul>
+		</div>
+	</nav>
+</div>

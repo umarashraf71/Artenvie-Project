@@ -1,0 +1,166 @@
+
+<div class="container">
+	<div class="adminPanel">
+	  <div class="row mb-4" style="margin-top: 30px">
+		<div
+		  class="col-md-9"
+		  style="
+			margin: 0 auto !important;
+			padding: 20px 45px 40px 45px;
+			border: 1px solid rgb(220, 220, 220);
+			background: rgb(243, 243, 243);
+			box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+			  0 1px 7px 0 rgba(0, 0, 0, 0.19);
+		  "
+		>
+		  
+		<h2 class="mt-3 mb-4 text-info">Edit <%= post.buyingFormat %> Artwork</h2>
+  
+		  <hr
+			style="
+			  background-color: #bad0d3 !important;
+			  height: 0.3px;
+			  border: none !important;
+			  width: 100%;
+			  margin: 20px 0px 30px 0px;
+			"
+		  />
+  
+
+
+<form action="/admin/posts/edit/<%= post._id %>?_method=PUT" method="post" enctype="multipart/form-data"
+	onsubmit="event.preventDefault(); displaySpinner(this, 'btn-update'); ">
+
+	<div class="form-group">
+		<label for="title">Title</label>
+		<input type="text" class="form-control" placeholder="Enter title" id="title" name="title" required
+			value="<%= post.title %> " />
+	</div>
+
+	<div class="form-group">
+		<label for="title">Artist Name</label>
+		<input type="text" class="form-control" placeholder="Enter title" id="title" name="artistName" required
+			value="<%= post.artist %> " />
+	</div>
+
+	<div class="form-group">
+		<label for="category">Category</label>
+		<select name="category" id="status" class="form-control">
+			<option value="" hidden>Select Category</option>
+			<% categories.forEach(ctg => { %>
+			<option value="<%=ctg.name%>" <%- selected(ctg.name,post.category) %>> <%= ctg.name %>
+			</option>
+			<% }) %>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="size">Size :</label>
+		<div class="row">
+			<div class="col-md-6">
+				<label class="text-info" for="size">Width </label>
+				<input type="number" class="form-control" name="width" maxlength="5" placeholder="width" max="9999"
+					value="<%= +post.size.split('*')[0] %>" />
+			</div>
+			<div class="col-md-6">
+				<label class="text-info" for="size">Height </label>
+				<input type="number" class="form-control" name="height" maxlength="5" placeholder="height"
+					value="<%= +post.size.split('*')[1] %>" />
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="buyingFormat">Buying Format</label>
+		<select name="buyingFormat" id="status" class="form-control">
+			<option value="Discount" <%= selected('Discount',post.buyingFormat) %>>Discount</option>
+			<option value="Special Offer" <%= selected('Special Offer',post.buyingFormat) %>>Special Offer</option>
+			<option value="General" <%= selected('General',post.buyingFormat) %>>General</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="price">Price</label>
+		<div class="price">
+			<input type="number" class="form-control" placeholder="Enter price" name="price" required
+				value="<%= post.price %>" />
+		</div>
+	</div>
+
+	<% if (post.buyingFormat == 'Discount') { %>
+
+	<div class="form-group">
+		<label for="price">Discounted Price</label>
+		<div class="price">
+			<input type="number" class="form-control" placeholder="Enter price" name="discountPrice" required
+				value="<%= post.discountPrice %>" />
+
+		</div>
+	</div>
+	<% } %>
+
+	<div class="form-group">
+		<label for="condition">Condition</label>
+		<input type="text" class="form-control" placeholder="Enter condition" id="condition" name="condition" required
+			value="<%= post.condition %> " />
+	</div>
+
+	<div class="form-group">
+		<label for="condition">Medium</label>
+		<input type="text" class="form-control" placeholder="Enter artwork medium e.g watercolor" id="condition"
+			name="medium" required value="<%= post.medium %>" />
+	</div>
+
+	<div class="form-group">
+		<label for="condition">Description</label>
+		<textarea type="text" class="form-control" placeholder="Enter artwork description" id="condition"
+			name="description" rows="5" required spellcheck="false">
+			<%= post.description.trim() %></textarea>
+	</div>
+
+	<% if (post.buyingFormat == 'Special Offer') { %>
+	<div class="form-group mt-4">
+		<label for="">Artwork Images</label>
+		<div class="row mb-5">
+			<% post.file.forEach(f => { %>
+			<div class="col-md-4">
+				<img src="/uploads/<%= f %> " alt="" style="width: 100%; height: 150px; margin: 0.3rem 0;" />
+			</div>
+			<% }) %>
+		</div>
+		<label for="file">Upload Special Offer Multiple Files: </label> <br>
+		<input type="file" class="form-check-input" id="file" name="file" style="margin-left: 0.05em;" multiple />
+	</div>
+	<br>
+	<img src="" alt="" id="img" class="mt-2" style="width: 500px;" />
+	<br>
+	<% } else {%>
+
+		<div class="form-check mt-4">
+			<label class="form-check-label" for="check2">
+				<input type="checkbox" class="form-check-input" id="check1" name="allowComments" />
+				Allow comments on this artwork ?
+			</label>
+		</div>
+
+	<div class="form-group">
+		<label for="">Artwork Image</label><br>
+		<img src="/uploads/<%= post.file %> " alt="" style="width: 100%; margin: 1rem 0;" id="img" />
+	</div>
+
+	<div class="form-group">
+
+		<label for="file">Upload File: </label> <br>
+		<input type="file" class="form-check-input" id="file" name="file" style="margin-left: 0.05em;"
+			onchange="showImage(this)" accept="image/*" />
+	</div>
+	<br>
+	<% } %>
+
+	<button type="submit" class="btn btn-info btn-sm mt-2 mb-2 update-btn" id="btn-update">Update Artwork</button>
+
+</form>
+</div>
+</div>
+</div>
+</div>

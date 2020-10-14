@@ -1,0 +1,85 @@
+<!-- <ul class="navbar-nav sidenav-toggler">
+	<li class="nav-item">
+		<a class="nav-link text-center" id="sidenavToggler">
+			<i class="fa fa-fw fa-angle-left"></i>
+		</a>
+	</li>
+</ul> -->
+<ul class="navbar-nav ml-auto">
+
+
+	<li class="nav-item dropdown mr-5">
+
+		<% let n = notifications %>
+		<% n = n.filter(ntfc => ntfc.status == false)  %>
+
+		<a class="nav-link dropdown-toggle" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">
+			<i class="fa fa-fw fa-bell"></i>
+			<span>Notifications
+				<% if (n.length > 0) { %>
+				<span class="badge badge-pill badge-primary"><%= n.length %> </span>
+				<% } %>
+			</span>
+
+		</a>
+
+		<div class="dropdown-menu" aria-labelledby="messagesDropdown"
+			style="min-height: 70px; max-height: 400px; overflow-y: scroll; width: 370px;">
+
+			<% if (n.length === 0) { %>
+			<h6 class="dropdown-header">No New Notifications</h6>
+			<% }else{ %>
+			<h6 class="dropdown-header">Read Notifications</h6>
+			<div class="dropdown-divider"></div>
+			<% } %>
+
+			<% notifications.forEach(ntf => { %>
+			<a class="dropdown-item" href="/admin/users/readNotification/<%= ntf.sender %>/<%= ntf.id %>">
+				<strong><%= ntf.sender %></strong>
+				<span class="small float-right text-muted"><%= ntf.date.toLocaleString() %> </span>
+				<div class="dropdown-message small"><%= ntf.text %></div>
+			</a>
+			<div class="dropdown-divider"></div>
+			<% }) %>
+
+			<% if (n.length > 0) { %>
+			<h6 class="dropdown-header"><a href="/admin/users/markAllRead" class="">Mark all as read</a></h6>
+			<% } %>
+		</div>
+	</li>
+	<!-- <li class="nav-item">
+		<form class="form-inline my-2 my-lg-0 mr-lg-2">
+			<div class="input-group">
+				<input class="form-control" type="text" placeholder="Search for...">
+				<span class="input-group-btn">
+					<button class="btn btn-primary" type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+		</form>
+	</li> -->
+
+	<% if (user.userType == 'Artist') { %>
+	<li class="nav-item mt-2 mr-5">
+		<a href="" class="text-secondary">
+			<i class="fa fa-dollar-sign"></i>
+			<%= user.credit %>
+		</a>
+	</li>
+	<% } %>
+
+	<li class="nav-item">
+		<img width="40" height="40" src="/uploads/users/<%= user.image %>" alt="profile pic" style="
+			border-radius: 50%;
+			box-shadow: 0px 2px 5px #232323;
+			position: relative;
+			margin-right: 10px;
+		" />
+		<a href="/home/logout" class="text-secondary">
+			<i class="fa fa-user"></i>
+			<i class="fa fa-sign-out"></i>Logout
+		</a>
+	</li>
+</ul>

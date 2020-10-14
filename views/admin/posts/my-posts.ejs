@@ -1,0 +1,99 @@
+<style>
+	table tbody form button {
+		margin-left: 4px !important;
+		cursor: pointer;
+	}
+	.centerBtn {
+		display: inline-block;
+	}
+</style>
+
+<h2 class="mt-3 mb-3 text-info">Manage <%= buyingFormat %> Artworks</h2>
+
+<table class="table table-bordered mt-4 text-center">
+	<thead class="thead-dark scroll">
+		<tr>
+			<th scope="col">Image</th>
+			<th scope="col">Title</th>
+			<th scope="col">Format</th>
+			<% if (buyingFormat == 'Auction') { %>
+			<th scope="col">Time</th>
+			<th scope="col">Auction Status</th>
+			<% } %>
+			<th scope="col">Status</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% posts.forEach(post => { %>
+		<tr>
+			<td>
+				<a href="/home/productpage/<%= post.slug %>">
+					<img src="/uploads/<%= post.file[0] %>" alt="" class="" width="200" />
+				</a>
+			</td>
+			<td width="20%"><%= post.title %></td>
+
+			<% if (post.buyingFormat == 'General') { %>
+			<th class="text-primary"><%= post.buyingFormat %></th>
+
+			<% } else if (post.buyingFormat == 'Discount') {%>
+
+			<th class="text-success"><%= post.buyingFormat %></th>
+			<% } else if (post.buyingFormat == 'Special Offer') {%>
+
+			<th class="text-warning"><%= post.buyingFormat %></th>
+			<% } else if (post.buyingFormat == 'Auction') {%>
+
+			<th class="text-contact"><%= post.buyingFormat %></th>
+			<th><%- timer(post.startDate, post.endDate) %></th>
+			<% } %> <% if (post.buyingFormat == 'Auction') { %> <% if (new Date().getTime() < post.startDate.getTime()) { %>
+
+			<td width="5%">Starting Soon</td>
+
+			<% } else if ( new Date().getTime() >= post.startDate.getTime() && new Date().getTime() < post.endDate.getTime() ) { %>
+
+			<td width="5%">In Auction</td>
+
+			<% } else { %>
+
+			<td width="5%"><%= post.bidInfo.status %></td>
+
+			<% } } %>
+
+			<th width="5%"><%= post.status %></th>
+
+			<td class="text-center justify-content-center">
+				<div class="centerBtn">
+					<% if (post.buyingFormat !== 'Auction') { %>
+
+					<a class="btn btn-info btn-sm float-left mt-1" href="/admin/posts/edit/<%= post._id %>"> Edit</a>
+
+					<% } %> <% if (post.buyingFormat == "Auction") { %>
+
+					<a class="btn btn-success btn-sm float-left mt-1 ml-1" href="/home/biddingroom/placebid/<%= post.id %>"> View</a>
+
+					<% } else { %>
+
+					<a class="btn btn-success btn-sm float-left mt-1 ml-1" href="/home/productpage/<%= post.slug %>"> View</a>
+
+					<% } %> <% if (buyingFormat !== 'Auction' ) { %>
+					<form action="/admin/posts/delete/<%= post._id %>?_method=DELETE" method="post" class="float-left mt-1">
+						<button class="btn btn-danger btn-sm">Delete</button>
+					</form>
+
+					<div class="clearfix"></div>
+					<% } %> <% if (buyingFormat == 'Auction' && post.bidInfo.status != 'In Auction' ) { %>
+					<form action="/admin/posts/delete/<%= post._id %>?_method=DELETE" method="post" class="float-left mt-1">
+						<button class="btn btn-danger btn-sm">Delete</button>
+					</form>
+
+					<div class="clearfix"></div>
+					<% } %>
+				</div>
+			</td>
+		</tr>
+		<% }) %>
+	</tbody>
+</table>

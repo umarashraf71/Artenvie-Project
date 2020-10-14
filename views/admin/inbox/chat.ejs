@@ -1,0 +1,96 @@
+<!-- Breadcrumbs
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Chat</li>
+      </ol> -->
+
+
+<style>
+  body{
+    overflow-y:hidden !important;
+  }
+</style>
+
+
+
+
+<div class="container mb-1" style="margin-top: 30px;">
+<h3 class="text-info"><%= reciever %></h3>
+<div class="messaging">
+<div class="inbox_msg">
+<div class="mesgs">
+
+ 
+
+    <input type="hidden" id="hidden-username" value="<%= username %>">
+    <input type="hidden" id="hidden-room" value="<%= room %>">
+ 
+      <div id="messages"  class="msg_history" >
+
+
+            <% chats.forEach(chats => { %>  
+
+            <div class="incoming_msg" >
+            <div class="received_msg">
+                
+
+                    <h6 class="author"><%= chats.sender %></h6>
+                    <li class="received_msg_text"> <%= chats.message %></li>
+
+                    <% if (chats.location) { %>
+                           
+                    <li class="received_msg_text" ><a href="<%= chats.location %>">My Location</a></li>
+
+                    <% } %>
+
+                    <span class="time_date"><%= generateDate(chats.createdAt, 'LLL') %></span>
+
+            </div>
+            </div>
+            
+            <% }) %>       
+
+</div>
+
+
+  </div>
+  <div class="type_msg">
+    <div class="input_msg_write">
+
+    <div class="compose">
+
+    <form id="message-form" class="message-form">
+     
+   <input class="write_msg" placeholder="Type a message" name="message" required autocomplete="off">
+       <button class="btn btn-info btn-sm msg_send_btn" style=" font-size: 16px !important; cursor: pointer !important;font-weight: 400 !important;">
+         Send Message
+        </button>
+
+   
+    </form>
+
+    <button id="send-location" class="btn btn-info btn-sm msg_send_btn">Send Location</button> 
+    
+    </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

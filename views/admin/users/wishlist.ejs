@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 20px">
+      <div
+        class="col-md-9"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 20px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-2 mb-4 text-info" style="margin-left: -15px !important">
+          Wishlist
+        </h2>
+
+        <% posts.forEach(post => { %>
+
+        <div
+          class="row mb-3"
+          style="border-top: 0.5px solid #bad0d3 !important; padding-top: 12px"
+        >
+          <div class="col-md-6 mt-1 mb-1">
+            <div class="row">
+              <div class="mt-1">
+                <img src="/uploads/<%= post.file[0] %>" class="img-fluid" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="wishlist-artwork-text">
+              <a href="/home/productpage/<%= post.slug %>">
+                <h3 class="text-info"><%= post.title %></h3>
+              </a>
+              <p><span> Artist:</span> <%= post.artist %></p>
+              <p><span> Price:</span> $<%= post.price %></p>
+              <a
+                href="/home/user/wishlist/<%= post.id %>"
+                class="btn btn-danger btn-sm mt-2"
+                >Remove</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>

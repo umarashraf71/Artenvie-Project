@@ -1,0 +1,216 @@
+<div class="container">
+  <div class="adminPanel">
+    <div class="row mb-4" style="margin-top: 30px">
+      <div
+        class="col-md-9"
+        style="
+          margin: 0 auto !important;
+          padding: 20px 45px 40px 45px;
+          border: 1px solid rgb(220, 220, 220);
+          background: rgb(243, 243, 243);
+          box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2),
+            0 1px 7px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <h2 class="mt-3 mb-4 text-info">Upload <%= name %> Artwork</h2>
+
+        <hr
+          style="
+            background-color: #bad0d3 !important;
+            height: 0.3px;
+            border: none !important;
+            width: 100%;
+            margin: 20px 0px 30px 0px;
+          "
+        />
+
+        <form
+          action="/admin/posts/uploadArtwork"
+          method="post"
+          enctype="multipart/form-data"
+          onsubmit="event.preventDefault(); displaySpinner(this, 'upload-btn'); "
+        >
+          <div class="form-group">
+            <label for="title">Title </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter title"
+              id="title"
+              name="title"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category </label>
+            <select name="category" id="status" class="form-control">
+              <option value="" hidden>Select Category</option>
+              <% categories.forEach(ctg => { %>
+              <option value="<%= ctg.name %>"><%= ctg.name %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="size">Size </label>
+            <div class="row">
+              <div class="col-md-6">
+                <input
+                  type="number"
+                  name="width"
+                  class="form-control"
+                  maxlength="5"
+                  placeholder="width"
+                  max="9999"
+                />
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="number"
+                  name="height"
+                  class="form-control"
+                  maxlength="5"
+                  placeholder="height"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="buyingFormat">Buying Format </label>
+            <select name="buyingFormat" id="buyingFormat" class="form-control">
+              <% if (buyingFormat=='auction') { %>
+              <option value="Auction">Auction</option>
+              <% } else if(buyingFormat == 'discount') {%>
+              <option value="Discount">Discount</option>
+              <% } else if(buyingFormat == 'specialOffer'){ %>
+              <option value="Special Offer">Special Offer</option>
+              <% } else { %>
+              <option value="General">General</option>
+              <% } %>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <div class="price">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter price"
+                name="price"
+                required
+              />
+            </div>
+          </div>
+
+          <% if (buyingFormat == 'discount') { %>
+
+          <div class="form-group">
+            <label for="price">Discounted Price</label>
+            <div class="price">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter price"
+                name="discountPrice"
+                required
+              />
+            </div>
+          </div>
+          <% } %>
+
+          <div class="form-group">
+            <label for="condition">Condition </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter condition"
+              id="condition"
+              name="condition"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="condition">Medium </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter artwork medium e.g watercolor"
+              id="medium"
+              name="medium"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="condition">Description </label>
+            <textarea
+              type="text"
+              class="form-control"
+              placeholder="Enter artwork description"
+              id="descripttion"
+              name="description"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-check mt-4">
+            <label class="form-check-label" for="check2">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="check1"
+                name="allowComments"
+              />
+              Allow comments on this artwork ?
+            </label>
+          </div>
+
+          <% if (buyingFormat == 'specialOffer') { %>
+          <div class="form-group mt-4 mb-5">
+            <label for="file">Upload Special Offer Multiple Images: </label>
+            <br />
+            <input
+              type="file"
+              class="form-check-input"
+              id="offerfile"
+              name="file"
+              style="margin: 0.2rem"
+              accept="image/*"
+              multiple
+            />
+          </div>
+          <% } else {%>
+
+          <div class="form-group mt-4">
+            <label for="file">Upload Artwork Image : </label> <br />
+            <input
+              type="file"
+              class="form-check-input"
+              id="file"
+              name="file"
+              style="margin-left: 0.05em"
+              onchange="showImage(this)"
+              accept="image/*"
+            />
+          </div>
+          <br />
+          <img src="" alt="" id="img" class="mt-2" style="width: 100%" />
+          <br />
+          <% } %>
+          <button
+            type="submit"
+            class="btn btn-md btn-info mt-2 mb-2 upload-btn"
+            id="upload-btn"
+          >
+            Upload Artwork
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

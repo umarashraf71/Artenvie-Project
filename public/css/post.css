@@ -1,0 +1,65 @@
+/* form {
+		margin: 0 5em;
+	} */
+
+input,
+select,
+button,
+textarea {
+	padding: 0.8rem 0.6rem;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	transition: box-shadow 0.1s ease-in;
+	font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	border: 1px solid rgb(188, 227, 243);
+	box-shadow: 0px 0px 0px 3.5px rgb(187, 226, 241);
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+::placeholder {
+	font-size: 1.2em;
+	line-height: 1.2em;
+}
+
+.btn {
+	margin-top: 1rem;
+	font-size: 1em;
+	transition: transform 0.3s;
+	cursor: pointer;
+	position: relative;
+	outline: none;
+}
+
+.btn:hover {
+	/* background-color: #594f8d;
+    color: white; */
+	text-decoration: underline;
+}
+
+.edit {
+	padding: 0 !important;
+}
+
+.size,
+.price {
+	display: flex;
+}
+
+.size input,
+.price * {
+	flex: auto;
+}

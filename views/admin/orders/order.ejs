@@ -1,0 +1,57 @@
+<h2 class="mt-3 mb-3 text-info"><%= status || 'All Orders'%></h2>
+
+<table class="table table-bordered mt-4 text-center">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Date</th>
+			<th scope="col">Order No</th>
+			<th scope="col">Total</th>
+			<th scope="col">Status</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% orders.forEach(e => { %>
+
+		<tr>
+			<td width="12%"><%= e.date.toDateString() %></td>
+			<th width="2%"><%= e.orderID %></th>
+			<td width="2%">$<%= e.cart.totalPrice %></td>
+
+			<% if (e.status == 'In Progress') { %>
+			<th class="text-secondary"><%= e.status %></th>
+
+			<% } else if (e.status == 'Delivered') {%>
+
+			<th class="text-success"><%= e.status %></th>
+			<% } else if (e.status == 'Completed') {%>
+
+			<th class="text-primary"><%= e.status %></th>
+			<% } else if (e.status == 'Cancel Requested') {%>
+
+			<th class="text-warning"><%= e.status %></th>
+			<% } else if (e.status == 'Cancelled') {%>
+
+			<th class="text-danger"><%= e.status %></th>
+			<% } %>
+
+			<td width="auto !important; padding-right:0px !important">
+				<div class="text-left">
+					<a class="btn btn-info btn-sm mt-1" href="/admin/users/orders/details/<%= e.orderID %>">View Details</a>
+
+					<% if (e.status == 'In Progress' && user.userType == 'Artist') { %>
+					<a class="btn btn-success btn-sm mt-1" href="/admin/users/orders/deliver/<%= e.id %>/<%= e.orderID %>"> Deliver Order </a>
+					<a class="btn btn-warning btn-sm mt-1" href="/admin/users/orders/cancel/<%= e.id %>"> Cancel Request </a>
+					<% } %> <% if (e.status == 'Delivered' && user.userType == 'Customer') { %>
+					<a class="btn btn-primary btn-sm mt-1" href="/admin/users/orders/complete/<%= e.orderID %>/<%= e.artist %> ">Complete Order</a>
+					<% } %> <% if ((e.status == 'Completed' || e.status == 'Cancelled') && user.userType == 'Artist') { %>
+					<a class="btn btn-danger btn-sm mt-1" href="/admin/users/manageOrders/remove/<%= e.id %>">Remove Order</a>
+					<% } %> <% if(user.userType == 'Artist' && e.status != 'Cancelled') { %>
+					<a class="btn btn-contact btn-sm mt-1" href="/admin/users/orders/contactCustomer/<%= e.customerId %>">Contact Customer</a>
+					<% } %>
+				</div>
+			</td>
+		</tr>
+		<% }) %>
+	</tbody>
+</table>

@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/css/chat.css" />
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="#">Dashboard / Chat</a>
+	</li>
+</ol>
+<br /><br />
+
+<div class="container">
+	<div class="chat-container">
+		<% chats.forEach(chat => { %>
+		<div class="messages">
+			<p><%= chat.message %></p>
+			<div class="info">
+				<span class="sender"><%= chat.sender %> </span>
+				<span><%= chat.time %> </span>
+				<a href="/admin/users/inbox/chat/message/delete/<%= chat.id %> "
+					>Delete</a
+				>
+				<input type="hidden" id="artistID" value="<%= chat.recipient %>" />
+			</div>
+		</div>
+		<% }) %>
+	</div>
+
+	<div class="form">
+		<form>
+			<input
+				type="text"
+				placeholder="enter message..."
+				id="msgBox"
+				name="message"
+			/>
+			<button type="submit" id="sendBtn">Send</button>
+		</form>
+	</div>
+</div>
+
+<script>
+	const socket = io();
+	const param = window.location.href;
+	const receiverID = param.substring(param.lastIndexOf('/') + 1);
+
+	const form = document.forms[0];
+	//sconst receiverID = document.querySelectorAll('#artistID')[0].value;
+	//socket.emit('contact', receiverID);
+
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+
+		const msg = e.target.message.value;
+
+		socket.on('message-info', ({ sender, time, id }) => {
+			const div = document.createElement('div');
+			div.classList.add('messages');
+			div.innerHTML = `<p>${msg}</p>
+				<div class="info">
+				<span class="sender">${sender}</span>
+				<span>${time}</span>
+				<a href="/admin/users/inbox/chat/message/delete/${id}">Delete</a>
+				<input type="hidden" id="artistID" value="${receiverID}" />
+				</div>`;
+
+			const chatContaier = document.querySelector('.chat-container');
+			chatContaier.scrollTop = chatContaier.scrollHeight;
+
+			chatContaier.appendChild(div);
+		});
+
+		const data = {
+			receiverID,
+			msg,
+		};
+
+		socket.emit('message', data);
+		form.reset();
+	});
+</script>

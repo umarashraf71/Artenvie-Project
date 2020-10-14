@@ -1,0 +1,488 @@
+<ul
+  class="navbar-nav navbar-sidenav"
+  id="exampleAccordion"
+  style="z-index: 1 !important"
+>
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Dashboard"
+  >
+    <a class="nav-link" href="/admin">
+      <i class="fas fa-tachometer-alt pr-1"></i>
+      <span class="nav-link-text">Dashboard</span>
+    </a>
+  </li>
+
+  <!-- **************************************************************
+    ********************* ADMIN DASHBOARD ************************
+    ************************************************************** -->
+
+  <% if (user.roles.includes('admin')) { %>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Profile"
+  >
+    <a class="nav-link" href="/admin/users/account">
+      <i class="fas fa-user-edit pr-1"></i>
+      <span class="nav-link-text">Manage Profile</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Categories"
+  >
+    <a class="nav-link" href="/admin/categories">
+      <i class="fas fa-list-alt pr-1"></i>
+      <span class="nav-link-text">Manage Categories</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Comments"
+  >
+    <a class="nav-link" href="/admin/comments">
+      <i class="fas fa-comments pr-1"></i>
+      <span class="nav-link-text">Manage Comments</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage AdminArtworks"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#AdminArtworks"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-images pr-1"></i>
+      <span class="nav-link-text">Manage Artworks</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="AdminArtworks">
+      <li>
+        <a href="/admin/posts">All </a>
+      </li>
+      <li>
+        <a href="/admin/posts/General">General</a>
+      </li>
+      <li>
+        <a href="/admin/posts/Discount">Discount</a>
+      </li>
+      <li>
+        <a href="/admin/posts/Auction">Auction</a>
+      </li>
+      <li>
+        <a href="/admin/posts/Special Offer">Special Offer</a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Users"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#Users"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-user-friends pr-1"></i>
+      <span class="nav-link-text">Manage Users</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="Users">
+      <li>
+        <a href="/admin/fetchUsers">All</a>
+      </li>
+      <li>
+        <a href="/admin/fetchUsers/Artist">Artists</a>
+      </li>
+      <li>
+        <a href="/admin/fetchUsers/Customer">Customers</a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Admin Orders"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#AdminOrders"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-dolly-flatbed pr-1"></i>
+      <span class="nav-link-text">Manage Orders</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="AdminOrders">
+      <li>
+        <a href="/admin/manageOrders">All </a>
+      </li>
+      <li>
+        <a href="/admin/filterOrders/In Progress">In Progress </a>
+      </li>
+      <li>
+        <a href="/admin/filterOrders/Delivered">Delivered </a>
+      </li>
+      <li>
+        <a href="/admin/filterOrders/Completed">Completed </a>
+      </li>
+      <li>
+        <a href="/admin/filterOrders/Cancel Requested">Cancel Requested </a>
+      </li>
+      <li>
+        <a href="/admin/filterOrders/Cancelled">Cancelled </a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Send Warnings"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#Warnings"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-exclamation-triangle pr-1"></i>
+      <span class="nav-link-text">Send User Messages</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="Warnings">
+      <li>
+        <a href="/admin/sendWarning/Artist">To Artist</a>
+      </li>
+      <li>
+        <a href="/admin/sendWarning/Customer">To Customer</a>
+      </li>
+    </ul>
+  </li>
+
+  <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="/admin/users/manageProfile">
+            <i class="fas fa-th-large pr-1"></i>
+            <span class="nav-link-text">Manage Content</span>
+          </a>
+        </li> -->
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Comments"
+  >
+    <a class="nav-link" href="/admin/Queries">
+      <i class="fas fa-question-circle pr-1"></i>
+      <span class="nav-link-text">User Queries</span>
+    </a>
+  </li>
+
+  <% } %>
+
+  <!-- **************************************************************
+    ********************* ARTIST DASHBOARD ************************
+    ************************************************************** -->
+
+  <% if (user.userType == 'Artist') { %>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Charts"
+  >
+    <a class="nav-link" href="/admin/inbox">
+      <i class="fas fa-inbox pr-1"></i>
+      <span class="nav-link-text">Inbox</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/account">
+      <i class="fas fa-user-edit pr-1"></i>
+      <span class="nav-link-text">Manage Profile</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Upload Artworks"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#collapseArtworks"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-upload pr-1"></i>
+      <span class="nav-link-text">Upload Artworks</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="collapseArtworks">
+      <li>
+        <a href="/admin/posts/uploadArtwork/general">General Room</a>
+      </li>
+      <li>
+        <a href="/admin/posts/uploadArtwork/discount">Discount Room</a>
+      </li>
+      <li>
+        <a href="/admin/posts/uploadArtwork/auction">Auction Room</a>
+      </li>
+      <li>
+        <a href="/admin/posts/uploadArtwork/specialOffer">Special Offer Room</a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage Artworks"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#collapseMngArtworks"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-images pr-1"> </i>
+      <span class="nav-link-text"> Manage Artworks</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="collapseMngArtworks">
+      <li>
+        <a href="/admin/posts">All Artworks</a>
+      </li>
+      <li>
+        <a href="/admin/posts/my-posts/General">General Artworks</a>
+      </li>
+      <li>
+        <a href="/admin/posts/my-posts/Discount">Discount Artworks</a>
+      </li>
+      <li>
+        <a href="/admin/posts/my-posts/Auction">Auction Artworks</a>
+      </li>
+      <li>
+        <a href="/admin/posts/my-posts/Special Offer">Special Offer Artworks</a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Manage ArtistOrders"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#ArtistOrders"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-dolly-flatbed pr-1"></i>
+      <span class="nav-link-text">Manage Orders</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="ArtistOrders">
+      <li>
+        <a href="/admin/allOrders">All </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/progress">In Progress </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/delivered">Delivered </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/completed">Completed </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/cancelRequest">Cancel Request </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/cancelled">Cancelled </a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/reviews">
+      <i class="fas fa-star pr-1"></i>
+      <span class="nav-link-text">Reviews & Ratings</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/contactAdmin">
+      <i class="fas fa-envelope pr-1"></i>
+      <span class="nav-link-text">Contact Admin</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/adminWarnings">
+      <i class="fas fa-sticky-note pr-1"></i>
+      <span class="nav-link-text">Admin Messages</span>
+    </a>
+  </li>
+
+  <% } %>
+
+  <!-- **************************************************************
+    ******************** CUSTOMER DASHBOARD **********************
+    ************************************************************** -->
+
+  <% if (user.userType == 'Customer') { %>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Charts"
+  >
+    <a class="nav-link" href="/admin/inbox">
+      <i class="fas fa-inbox pr-1"></i>
+      <span class="nav-link-text">Inbox</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/account">
+      <i class="fas fa-user-edit pr-1"></i>
+      <span class="nav-link-text">Manage Profile</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Auction Artworks"
+  >
+    <a class="nav-link" href="/admin/users/auctions">
+      <i class="fas fa-gavel pr-1"></i>
+      <span class="nav-link-text">Bidded Auction Artworks</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="View Customer Orders"
+  >
+    <a
+      class="nav-link nav-link-collapse collapsed"
+      data-toggle="collapse"
+      href="#CustomerOrders"
+      data-parent="#exampleAccordion"
+    >
+      <i class="fas fa-dolly-flatbed pr-1"></i>
+      <span class="nav-link-text">View Orders</span>
+    </a>
+    <ul class="sidenav-second-level collapse" id="CustomerOrders">
+      <li>
+        <a href="/admin/allOrders">All </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/progress">In Progress </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/delivered">Delivered </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/completed">Completed </a>
+      </li>
+      <li>
+        <a href="/admin/users/orders/cancelled">Cancelled </a>
+      </li>
+    </ul>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/wishlist/<%= user.id %>">
+      <i class="fas fa-heart pr-1"></i>
+      <span class="nav-link-text">Wishlist</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/contactAdmin">
+      <i class="fas fa-envelope pr-1"></i>
+      <span class="nav-link-text">Contact Admin</span>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="Tables"
+  >
+    <a class="nav-link" href="/admin/users/adminWarnings">
+      <i class="fas fa-sticky-note pr-1"></i>
+      <span class="nav-link-text">Admin Messages</span>
+    </a>
+  </li>
+
+  <% } %>
+</ul>

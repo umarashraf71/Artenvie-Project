@@ -1,0 +1,110 @@
+
+
+:root {
+	--textColor: rgb(223, 189, 36);
+	--font: 'Rubik', sans-serif;
+  }
+
+  
+  footer {
+
+	  position:absolute; 
+	  bottom:0; 
+	  width:100%; 
+	  min-height:140px; 
+	  background: black;
+	  padding:0px;
+	  border-top: 1px solid var(--textColor);
+	}
+	
+	footer .links {
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-pack: justify;
+		  -ms-flex-pack: justify;
+			  justify-content: space-between;
+	  padding: 2em;
+	}
+	
+	footer .links ul {
+	  list-style: none;
+	  margin-left: -20px;
+	}
+	
+	footer .links ul li a
+	{
+	  text-decoration: none;
+	  color: white;
+	  transition: 0.3s;
+	  font-weight: 300;
+	}
+  
+  
+	footer .links ul li {
+	  display: inline-block;
+	  color: #ffffff;
+	  text-transform: uppercase;
+	  font-family: 'Rubik', sans-serif;
+	  margin-left: 1.4em;
+	  cursor: pointer;
+	  -webkit-transition: .3s;
+	  transition: .3s;
+	  font-weight: 300;
+	  font-size: 17px;
+	  text-transform: uppercase;
+	  letter-spacing: 1px;
+	  word-spacing: 1px;
+	}
+	
+	footer .links ul li:hover {
+	  color: var(--textColor);
+	}
+  
+	footer .links ul li a:hover {
+	  color: var(--textColor);
+	}
+	
+	footer .social 
+	{
+	  margin-right: 30px;
+	}
+	
+	footer .social i {
+	  font-size: 1.5em;
+	  margin-left: 1em;
+	  color: white;
+	  -webkit-transition: .3s;
+	  transition: .3s;
+	}
+	
+	footer .social .fa-facebook:hover {
+	  color: #0a48cc;
+	  transition: 0.2s;
+	}
+	
+	footer .social .fa-twitter:hover {
+	  color: #0589bd;
+	  transition: 0.2s;
+	}
+	
+	footer .social .fa-google:hover {
+	  color: red;
+	  transition: 0.2s;
+	}
+	
+	footer .social .fa-instagram:hover {
+	  color: #517fa4;
+	  transition: 0.2s;
+	}
+	
+	footer p {
+	  color: var(--textColor);
+	  font-family: 'Rubik', sans-serif;
+	  font-weight: 100;
+	  font-size: .9em;
+	  text-align: center;
+	  margin-top: -10px;
+	  letter-spacing: 1px;
+	}
+  

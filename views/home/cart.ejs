@@ -1,0 +1,171 @@
+<link rel="stylesheet" href="/css/shopping-cart.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Shopping Cart</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div class="float-left">
+				<h1>SHOPPING CART</h1>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<% if (typeof session.cart !== 'undefined' && Object.keys(session.cart.items).length > 0) { %>
+
+		<div class="wrapper1 row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Image</th>
+						<th scope="col">Item</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Price</th>
+						<th scope="col">Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% Object.keys(session.cart.items).forEach(key => { %>
+					<tr>
+						<% const post = session.cart.items[key] %>
+						<input type="hidden" id="postID" value="<%= post.item._id %>" />
+						<td>
+							<% if (post.item.file.length >1) { %>
+							<img class="tr-image" width="150" height="100" src="/uploads/<%= post.item.file[0] %>" alt="" />
+							<% } else { %>
+							<img class="tr-image" width="150" height="100" src="/uploads/<%= post.item.file %>" alt="" />
+							<% } %>
+						</td>
+						<td><%= post.item.title %></td>
+						<td>
+							<span class="quantityCount"><%= post.qty %> </span>
+							<% if (post.item.buyingFormat != 'Auction') { %>
+							<a href="/home/order/cartItem/quantity/<%=post.item._id %>/more" class="quantity" id="more"> <i class="fa fa-plus-circle icon"></i> </a>
+							<% } %> <% if (post.qty > 1) { %> / <a href="/home/order/cartItem/quantity/<%=post.item._id %>/less" class="quantity" id="less"> <i class="fa fa-minus-circle icon"></i></a>
+
+							<% } %>
+						</td>
+						<td>$ <% if(post.item.buyingFormat == 'Discount'){ %><%= post.item.discountPrice %> <% } else { %><%= post.item.price %> <% } %></td>
+						<td>
+							<% if (post.item.buyingFormat != 'Auction') { %>
+							<a href="/home/order/cart/delete/<%= post.item._id %>/cart">
+								<i class="fa fa-trash icon"></i>
+							</a>
+							<% } %>
+						</td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-6">
+				<div class="row justify-content-end">
+					<div class="col-md-7">
+						<div class="cart">
+							<div class="row">
+								<div class="col-md-12 text-right border-bottom mb-3">
+									<h3>Cart Totals</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 cart-text-head">
+									<p>No of Items</p>
+								</div>
+								<div class="col-md-6 text-right">
+									<p id="totalItems"><%= typeof session.cart !== 'undefined' ? Object.keys(session.cart.items).length : 0 %></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<p class="cart-text-head">Total</p>
+								</div>
+								<div class="col-md-6 text-right">
+									<p>$<span id="total"> <%= typeof session.cart !== 'undefined' ? session.cart.totalPrice:'' %></span></p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12 border-top pt-3">
+									<button class="btn btn-primary btn-md btn-block">
+										<a href="/home/order/placeorder"> Proceed To Checkout</a>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% } else { %>
+
+	<div class="conatiner">
+		<div class="row empty-cart">
+			<div class="col-md-12">
+				<h1 class="text-center">Your Shopping Cart is empty!</h1>
+			</div>
+		</div>
+	</div>
+
+	<% } %> <%#
+	<script>
+		$(document).ready(() => {
+			$('.quantity').on('click', (e) => {
+				const id = $('#postID').val();
+				const param = e.target.id;
+
+				$.ajax({
+					url: `/home/cartItem/quantity/${id}/${param}`,
+					method: 'GET',
+				}).done((res) => {
+					if (res.success) {
+						showCart(res.shoppingCart);
+					} else {
+						window.location.assign('/home/login');
+					}
+				});
+			});
+
+			function showCart(cart) {
+				$('.data').html('');
+				const keys = Object.keys(cart.items);
+
+				for (let i = 0; i < keys.length; i++) {
+					const tr = document.createElement('tr');
+					const post = cart.items[keys[i]];
+
+					tr.innerHTML = `<input type="hidden" id="postID" value="${post.item._id}" />`;
+					tr.innerHTML += `<td><img src="/uploads/${post.item.file[0]}" width="100" /></td><td>${post.item.title}</td>`;
+
+					if (+post.qty > 1) {
+						tr.innerHTML += `<td><span class="quantityCount">${post.qty}</span><button class="quantity" id="more">+</button> <button class="quantity" id="less">-</button></td>`;
+					} else {
+						tr.innerHTML += `<td><span class="quantityCount">${post.qty}</span><button class="quantity" id="more">+</button></td>`;
+					}
+					if (post.item.buyingFormat == 'Discount') {
+						tr.innerHTML += `<td>$${post.item.discountPrice}</td>`;
+					} else {
+						tr.innerHTML += `<td>$${post.item.price}</td>`;
+					}
+
+					tr.innerHTML += `<td><form action="/home/cart/delete/${post.item._id}/cart" method="POST"><button type="submit">remove</button></form></td>`;
+
+					$('.data').append(tr);
+				}
+			}
+		});
+	</script>
+	%>
+</div>

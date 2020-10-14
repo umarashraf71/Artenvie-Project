@@ -1,0 +1,138 @@
+<style>
+  table tbody form button {
+    margin-left: 4px !important;
+    cursor: pointer;
+  }
+  .centerBtn {
+    display: inline-block;
+  }
+</style>
+
+<h2 class="mt-3 mb-3 text-info">
+  Manage <%=typeof buyingFormat != 'undefined' ? buyingFormat : '' %> Artworks
+</h2>
+
+<form
+  class="float-right form-inline d-flex justify-content-center md-form form-sm active-purple-2"
+  method="POST"
+  action="/admin/posts/search"
+  autocomplete="on"
+  onsubmit="event.preventDefault(); displaySpinner(this,'searchBtn')"
+>
+  <input
+    class="form-control form-control-sm"
+    type="text"
+    placeholder="Search here ... "
+    aria-label="Search"
+    name="search"
+    id="search"
+    required
+  />
+  <button type="submit" id="searchBtn" class="searchBtn">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </button>
+</form>
+
+<div class="clearfix"></div>
+
+<table class="table table-bordered mt-4 text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Format</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.forEach(post => { %>
+    <tr>
+      <td>
+        <a href="/home/productpage/<%= post.slug %>">
+          <img src="/uploads/<%= post.file[0] %>" alt="" class="" width="200" />
+        </a>
+      </td>
+      <td width="12%"><%= post.title %></td>
+
+      <td width="7%"><%= post.artist %></td>
+
+      <% if (post.buyingFormat == 'General') { %>
+      <th width="5%" class="text-primary"><%= post.buyingFormat %></th>
+
+      <% } else if (post.buyingFormat == 'Discount') {%>
+
+      <th width="5%" class="text-success"><%= post.buyingFormat %></th>
+      <% } else if (post.buyingFormat == 'Special Offer') {%>
+
+      <th width="5%" class="text-warning"><%= post.buyingFormat %></th>
+      <% } else if (post.buyingFormat == 'Auction') {%>
+
+      <th width="5%" class="text-contact"><%= post.buyingFormat %></th>
+      <% } %>
+
+      <th width="6%"><%= post.status %></th>
+
+      <td class="text-center">
+        <div class="text-left">
+          <% if (user.roles.includes('admin')) { %> <% if (post.status ==
+          'Disabled') { %>
+          <a
+            style="padding: 4.5px 12px !important"
+            class="btn btn-info btn-sm float-left mr-1"
+            href="/admin/artwork/updateStatus/<%= post.id %>/enable"
+          >
+            Enable
+          </a>
+          <% } else { %>
+          <a
+            style="padding: 4.5px 10px !important"
+            class="btn btn-warning btn-sm float-left mr-1"
+            href="/admin/artwork/updateStatus/<%= post.id %>/disable"
+          >
+            Disable
+          </a>
+          <% } %> <% } %> <% if (post.buyingFormat !== 'Auction' &&
+          user.userType == 'Artist') { %>
+
+          <a
+            class="btn btn-info btn-sm float-left mr-1"
+            href="/admin/posts/edit/<%= post._id %>"
+          >
+            Edit</a
+          >
+
+          <% } %> <% if (post.buyingFormat == "Auction") { %>
+          <a
+            style="padding: 4.5px 18px !important"
+            class="btn btn-success btn-sm float-left"
+            href="/home/biddingroom/placebid/<%= post.id %>"
+          >
+            View</a
+          >
+          <% } else { %>
+          <a
+            style="padding: 4.5px 18px !important"
+            class="btn btn-success btn-sm float-left"
+            href="/home/productpage/<%= post.slug %>"
+          >
+            View</a
+          >
+          <% } %>
+
+          <form
+            action="/admin/posts/delete/<%= post._id %>?_method=DELETE"
+            method="post"
+            class="float-left"
+          >
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+
+          <div class="clearfix"></div>
+        </div>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

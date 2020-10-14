@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="/css/login.css" />
+
+<div class="container">
+  <div
+    class="row"
+    style="margin-top: 195px; margin-bottom: 110px; color: black"
+  >
+    <div class="col-lg-6 offset-lg-3 text-center">
+      <div class="form-wrap">
+        <h6 class="text-success text-center mb-1"></h6>
+        <h1 class="text-center">LOG IN</h1>
+        <%# action="/home/user/login" method="post"%>
+        <form
+          role="form"
+          id="login-form"
+          action="/home/user/login"
+          method="post"
+          onsubmit="event.preventDefault(); displaySpinner(this,'btn-login')"
+        >
+          <div class="form-group">
+            <input
+              required
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              placeholder="Email"
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              required
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              placeholder="Password"
+            />
+            <span
+              toggle="#password-field"
+              class="fa fa-fw fa-eye field-icon toggle-password"
+              onclick="toggleVisibility(this,'password')"
+            ></span>
+          </div>
+
+          <input
+            class="btn btn-primary btn-block btn-lg"
+            type="submit"
+            name="login"
+            id="btn-login"
+            value="Log in"
+          />
+
+          <div class="form-group">
+            <label for="login" class="text-center" style="display: block"
+              >Dont have account ? <a href="/home/register">Sign up</a></label
+            >
+            <label for="" style="margin-top: -5px"
+              ><a href="/home/user/forgotPassword">Forgot Password ?</a></label
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pwdField = document.querySelector('input[type=password]');
+
+  $('.toggle-password').click(function () {
+    $(this).toggleClass('fa-eye fa-eye-slash');
+  });
+
+  function toggleVisibility(icon, field) {
+    const f = document.getElementById(field);
+
+    if (f.getAttribute('type') == 'password') f.setAttribute('type', 'text');
+    else if (f.getAttribute('type') == 'text')
+      f.setAttribute('type', 'password');
+  }
+
+  const msg = document.getElementById('msg');
+</script>

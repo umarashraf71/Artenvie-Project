@@ -1,0 +1,207 @@
+<link rel="stylesheet" href="/css/painting-bid-page.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Artwork Bidding</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div class="float-left">
+				<h1>ARTWORK BIDDING</h1>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="row mt-5">
+			<div class="col-md-7">
+				<div class="col-md-12" style="padding: 0px !important; margin: 0px !important">
+					<a href="/uploads/<%= post.file %>" class="magnifier-thumb-wrapper"><img src="/uploads/<%= post.file %>" alt="" id="artImg" class="img-fluid img-thumbnail" /></a>
+				</div>
+
+				<div class="col-md-12" style="padding: 0px !important; margin: 0px !important">
+					<div class="card">
+						<div class="card-header">Artwork Description</div>
+						<div class="card-body">
+							<p class="card-text"><%= post.description %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<div class="artwork-text">
+					<h3><%= post.title %></h3>
+					<h4>
+						<a href="/home/user/artist/profile/<%= post.artist %> "><%= post.artist %> </a>
+					</h4>
+
+					<div class="artwork-text-line mt-1 mb-3"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Size:</span>
+						<span class="float-right" style="margin-top: 1px"><%= post.size %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Condition:</span>
+						<span class="float-right" style="margin-top: 1px"><%= post.condition %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Medium:</span>
+						<span class="float-right" style="margin-top: 1px"><%= post.medium %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Category:</span>
+						<span class="float-right" style="margin-top: 1px"><%= post.category %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Buying Format:</span>
+						<span class="float-right" style="margin-top: 1px"><%= post.buyingFormat %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p class="mt-4">
+						<span class="float-left mb-1 artwork-text-head"> Duration:</span>
+						<span class="float-right" style="margin-top: 1px"> <%= post.startDate.toDateString() %> - <%=post.endDate.toDateString() %> </span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Time:</span>
+						<span class="float-right" style="margin-top: 1px"> <%- timer(post.startDate, post.endDate) %> </span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Starting Bid Price:</span>
+						<span class="float-right" style="margin-top: 1px"> $<%= post.price %> </span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"><%= post.bidInfo.status === 'Auction Ended' ? 'Last Bid:' : 'Current Bid:' %> </span>
+						<span class="float-right" style="margin-top: 1px"> <% if (post.bidInfo.amount > 0) { %> $<%= post.bidInfo.amount %> by <%= post.bidInfo.bidder %> <% } %> </span>
+					</p>
+					<div class="clearfix"></div>
+					<% if (user == undefined) { %>
+					<h5 class="mt-3 text-danger text-center">You must be logged in to place bid !</h5>
+					<% } %> <% if ((user != undefined && user.userType == 'Customer') || (user != undefined && user.username == post.artist)) { %>
+					<h3 class="mt-3 text-center text-primary"><%- bidStatus(post.startDate,post.endDate,post.id) || post.bidInfo.status %> <% } %></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		function magnify(imgID, zoom) {
+			var img, glass, w, h, bw;
+			img = document.getElementById(imgID);
+
+			/* Create magnifier glass: */
+			glass = document.createElement('DIV');
+			glass.setAttribute('class', 'img-magnifier-glass');
+
+			/* Insert magnifier glass: */
+			img.parentElement.insertBefore(glass, img);
+
+			/* Set background properties for the magnifier glass: */
+			glass.style.backgroundImage = "url('" + img.src + "')";
+			glass.style.backgroundRepeat = 'no-repeat';
+			glass.style.backgroundSize = img.width * zoom + 'px ' + img.height * zoom + 'px';
+			bw = 3;
+			w = glass.offsetWidth / 2;
+			h = glass.offsetHeight / 2;
+
+			/* Execute a function when someone moves the magnifier glass over the image: */
+			glass.addEventListener('mousemove', moveMagnifier);
+			img.addEventListener('mousemove', moveMagnifier);
+
+			/*and also for touch screens:*/
+			glass.addEventListener('touchmove', moveMagnifier);
+			img.addEventListener('touchmove', moveMagnifier);
+
+			function moveMagnifier(e) {
+				glass.style.display = 'block';
+				var pos, x, y;
+				/* Prevent any other actions that may occur when moving over the image */
+				e.preventDefault();
+				/* Get the cursor's x and y positions: */
+				pos = getCursorPos(e);
+				x = pos.x;
+				y = pos.y;
+				/* Prevent the magnifier glass from being positioned outside the image: */
+				if (x > img.width - w / zoom) {
+					x = img.width - 35 - w / zoom;
+				}
+				if (x < w / zoom) {
+					x = w + 25 / zoom;
+				}
+				if (y > img.height - h / zoom) {
+					y = img.height - 80(h / zoom);
+				}
+				if (y < h / zoom) {
+					y = h + 25 / zoom;
+				}
+
+				glass.style.left = x - w + 'px';
+				glass.style.top = y - h + 'px';
+
+				glass.style.backgroundPosition = '-' + (x * zoom - w + bw) + 'px -' + (y * zoom - h + bw) + 'px';
+			}
+
+			function getCursorPos(e) {
+				var a,
+					x = 0,
+					y = 0;
+				e = e || window.event;
+				/* Get the x and y positions of the image: */
+				a = img.getBoundingClientRect();
+				/* Calculate the cursor's x and y coordinates, relative to the image: */
+				x = e.pageX - a.left;
+				y = e.pageY - a.top;
+				/* Consider any page scrolling: */
+				x = x - window.pageXOffset;
+				y = y - window.pageYOffset;
+				return {
+					x: x,
+					y: y,
+				};
+			}
+		}
+
+		magnify('artImg', 3);
+
+		const btn = document.querySelector('.btn-bid');
+		const form = document.forms[0];
+
+		form.addEventListener(
+			'submit',
+			(e) => {
+				e.preventDefault();
+				btn.setAttribute('disabled', true);
+
+				spinner.style.display = 'flex';
+				form.submit();
+
+				setTimeout(() => {
+					spinner.style.display = 'none';
+				}, 3000);
+			},
+			false
+		);
+	</script>
+</div>

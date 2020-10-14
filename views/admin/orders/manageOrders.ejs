@@ -1,0 +1,75 @@
+<h2 class="mt-3 mb-3 text-info">Manage <%= status %> Orders</h2>
+
+<table class="table table-bordered mt-4 text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Order No</th>
+      <th scope="col">Date (mm / dd / yyyy)</th>
+      <th scope="col">Total ($)</th>
+      <th scope="col">Cancel Reason</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.forEach(e => { %>
+
+    <tr>
+      <th scope="row"><%= e.orderID %></th>
+      <td width="18%"><%= e.date.toLocaleString() %></td>
+      <td width="7%">$<%= e.cart.totalPrice %></td>
+
+      <% if (e.status == 'Cancel Requested') { %>
+      <td style="width: 20%"><%= e.reason %></td>
+      <% } else { %>
+      <td style="width: 20%">None</td>
+      <% } %> <% if (e.status == 'In Progress') { %>
+      <th class="text-secondary"><%= e.status %></th>
+
+      <% } else if (e.status == 'Delivered') {%>
+
+      <th class="text-success"><%= e.status %></th>
+      <% } else if (e.status == 'Completed') {%>
+
+      <th class="text-primary"><%= e.status %></th>
+      <% } else if (e.status == 'Cancel Requested') {%>
+
+      <th class="text-warning"><%= e.status %></th>
+      <% } else if (e.status == 'Cancelled') {%>
+
+      <th class="text-danger"><%= e.status %></th>
+      <% } %>
+
+      <td>
+        <div class="text-left">
+          <a
+            style="padding: 4.5px 18px !important"
+            class="btn btn-info btn-sm mt-1"
+            href="/admin/users/orders/details/<%= e.orderID %>"
+            >View</a
+          >
+
+          <% if (e.status != 'Completed' && e.status != 'Cancelled' && e.status
+          != 'Delivered' && e.status != 'In Progress') { %>
+          <a
+            style="padding: 4.5px 14px !important"
+            class="btn btn-contact btn-sm mt-1"
+            href="/admin/manageOrders/cancel/<%= e.id %>"
+            >Cancel</a
+          >
+          <% } %> <% if (e.status == 'Completed' || e.status == 'Cancelled' ) {
+          %>
+          <a
+            style="padding: 4.5px 9px !important"
+            class="btn btn-danger btn-sm mt-1"
+            href="/admin/users/manageOrders/remove/<%= e.id %>"
+            >Remove</a
+          >
+
+          <% } %>
+        </div>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

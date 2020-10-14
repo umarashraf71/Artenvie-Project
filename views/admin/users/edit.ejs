@@ -1,0 +1,93 @@
+
+<div class="container ">
+	<div class="adminPanel">
+		<div class="row mb-4 " style="margin-top: 30px;">
+			
+			<div class="col-md-6 " style="margin: 0 auto !important; 
+										  padding: 20px 45px;     
+										  border: 1px solid rgb(220, 220, 220);
+										  background: rgb(243, 243, 243);
+										  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.19);">
+				
+	<h2 class="mt-3 mb-4 text-info">Edit Profile</h2>
+
+	<hr
+          style="
+            background-color: #bad0d3 !important;
+            height: 0.3px;
+            border: none !important;
+            width: 100%;
+            margin: 20px 0px 30px 0px;
+          "
+        />
+	
+<form action="/admin/users/account/edit/<%= user._id %>?_method=PUT" method="POST" enctype="multipart/form-data"
+	onsubmit="event.preventDefault(); displaySpinner(this,'up-btn')">
+
+	<div class="form-group">
+		<label for="title">Name :</label>
+		<input type="text" value="<%= user.name %>" name="firstName" class="form-control" id="title"
+			placeholder="Enter Full Name" />
+	</div>
+
+	<div class="form-group">
+		<label for="title">Email :</label>
+		<input type="text" value="<%= user.email %>" name="email" readonly class="form-control" id="title"
+			placeholder="Enter Full Name" />
+	</div>
+
+	<div class="form-group">
+		<label for="title">Username :</label>
+		<input type="text" value="<%= user.username %>" name="username" readonly class="form-control" id="title"
+			placeholder="Enter Full Name" />
+	</div>
+
+	<% if (user.userType == 'Artist') { %>
+
+	<div class="form-group">
+		<label for="title">Language :</label>
+		<input type="text" value="<%= user.languages %>" name="languages" class="form-control" id="title"
+			placeholder="Enter your languages" />
+	</div>
+
+	<div class="form-group">
+		<label for="title">From :</label>
+		<input type="text" value="<%= user.location %>" name="location" class="form-control" id="title"
+			placeholder="Enter Location" />
+	</div>
+
+	<div class="form-group">
+		<label for="title">Skills :</label>
+		<input type="text" value="<%= user.skills %>" name="skills" class="form-control" id="title"
+			placeholder="Enter Skills" />
+	</div>
+
+	<div class="form-group">
+		<label for="title">Description :</label>
+		<textarea name="description" rows="5" type="text" class="form-control" id="description"
+			placeholder="Write about yourself..."><%= user.description %></textarea>
+		</textarea>
+	</div>
+
+	<% } %>
+
+	<div class="form-group">
+		<label for="">Profile Image :</label>
+	</div>
+
+	<div class="form-group">
+		<img src="/uploads/users/<%= user.image %>" alt="" class="img img-responsive" width="200" id="img" />
+	</div>
+
+	<div class="form-group mt-4">
+		<label for="file">Upload Profile Image :</label> <br>
+		<input type="file" class="form-check-input" id="file" name="file" style="margin-left: 0.05em;"
+			onchange="showImage(this)" />
+	</div>
+	<input type="submit" value="Update Profile" class="btn btn-info mt-5 mb-4 profile-btn" id="up-btn" />
+</form>
+
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,122 @@
+:root {
+	--textColor: rgb(223, 189, 36);
+	--font: 'Rubik', sans-serif;
+  }
+  
+  body
+  {
+	  margin:0 auto;
+	  padding:0;
+	box-sizing: border-box;
+	font-family: 'Rubik', sans-serif !important;
+  }
+
+  .customerOrderDetails
+  {
+    border: 1px solid rgb(220, 220, 220);
+    background: rgb(248, 248, 248);
+    margin-top: 1.5em;
+    margin-bottom: 50px;
+    padding:0.5em 25px;
+  }
+  
+  .order-text h3
+  {
+      font-size: 1.5em;
+      font-weight: 400;
+      margin-top: 5px;
+      margin-bottom:15px;
+  }
+  
+  .order-text h4
+  {
+      font-size: 1.5em;
+      color: var(--textColor) !important;
+      font-weight: 400;
+      margin-top: 5px;
+      margin-bottom:15px;
+  }
+  
+  p .artwork-text-head
+{
+  color: var(--textColor) !important;
+  font-weight: 400;
+  font-size: 1.15em !important; 
+}
+
+  p .artwork-text-notes
+{
+  padding-top:30px;
+  color: var(--textColor) !important;
+  font-weight: 400;
+  font-size: 1.15em !important; 
+}
+  
+  .order-text p
+  {
+    padding-top:2px;
+      padding-left:10px;
+      padding-right:10px;
+      font-size: 1em;
+      color: black;
+      font-style:justify;
+  }
+  
+  .order-text span
+  {
+      font-weight: 400;
+      color: black;
+      padding-top:4.5px;
+  }
+
+  hr
+  {
+    border:0.5px solid #aaacaf;
+  }
+
+  .item-details
+  {
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+
+  .artwork-img
+  {
+      padding: 10px;
+      
+     
+  }
+   
+  .artwork-img img
+  {
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.3) !important; 
+      
+  }   
+      
+  .artwork-text
+  {
+     
+      padding: 10px;
+  }
+
+  .artwork-text h3
+  {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--textColor);
+  }
+
+  .artwork-text p
+  {
+      padding: 1.2px 0;
+      margin:0;
+      font-size: 18px;
+      font-weight: 200;
+      color: black;
+  }
+
+  .artwork-text span
+  {
+      font-weight: 400;
+      color: black;
+  }

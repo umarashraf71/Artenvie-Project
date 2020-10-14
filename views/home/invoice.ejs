@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="/css/invoice.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Order Invoice</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="content-wrapper">
+		<div class="container">
+			<div class="wrapper">
+				<div class="float-left">
+					<h1>Order Invoice</h1>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<div class="row mt-4">
+				<div class="col-md-8 offset-md-2 customerOrderDetails">
+					<div class="order-text">
+						<h3 class="border-bottom pb-3 pt-2">ORDER DETAILS</h3>
+
+						<p class="mb-3">
+							<span class="float-left artwork-text-head"> Date: </span>
+							<span class="float-right" style="margin-top: 2px"><%= order.date.toDateString() %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1 mt-3">
+							<span class="float-left artwork-text-head"> Order No:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.orderID %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p>
+							<span class="float-left artwork-text-head"> Firstname:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.firstName %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Lastname:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.lastName %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Email:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.email %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Phone Number:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.phoneNo %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Payment Type:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.paymentMethod %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Total Items:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.cart.totalQty %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Total Price:</span>
+							<span class="float-right" style="margin-top: 2px">$<%= order.cart.totalPrice %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Order Status:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.status %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mb-1">
+							<span class="float-left artwork-text-head"> Shipping Address:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.address %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<p class="mt-3 pb-4">
+							<span class="float-left artwork-text-head"> Order Notes:</span>
+							<span class="float-right" style="margin-top: 2px"><%= order.notes %></span>
+						</p>
+						<div class="clearfix"></div>
+
+						<div class="order-text border-top pt-3 mt-4 text-center">
+							<h4 class="p-2">THANKS FOR THE ORDER, YOUR ORDER HAS BEEN PLACED !</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

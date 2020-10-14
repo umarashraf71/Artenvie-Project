@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="/css/checkout.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Checkout</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div class="float-left">
+				<h1>CHECKOUT</h1>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="wrapper2">
+					<h3>Billing Details</h3>
+
+					<form role="form" action="/home/order/checkout/completeorder" method="post" id="payment-form" onsubmit="event.preventDefault(); displaySpinner(this,'btn-order')">
+						<div class="form-group">
+							<input required type="text" name="firstName" id="username" class="form-control" placeholder="Firstname" value="<%= typeof order != 'undefined'? order.firstName: ''  %>" />
+						</div>
+
+						<div class="form-group">
+							<input required type="text" name="lastName" id="username" class="form-control" placeholder="Lastname" value="<%= typeof order != 'undefined'? order.lastName: ''  %>" />
+						</div>
+
+						<div class="form-group">
+							<input required type="email" name="email" id="key" class="form-control" placeholder="Email Address" value="<%= typeof order != 'undefined'? order.email: ''  %>" />
+						</div>
+
+						<div class="form-group">
+							<input required type="text" name="phoneNo" id="username" class="form-control" placeholder="Phone Number" value="<%= typeof order != 'undefined'? order.phoneNo: ''  %>" />
+						</div>
+
+						<div class="form-group">
+							<input required type="text" name="address" id="username" class="form-control" placeholder="Shipping Address" value="<%= typeof order != 'undefined'? order.address: ''  %>" />
+						</div>
+
+						<div class="form-group">
+							<select name="paymentMethod" id="" class="form-control" required>
+								<option value="" hidden>Payment Method</option>
+								<option value="cash">Cash on Delivery</option>
+								<option value="online">Online Payment</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<div id="card-element">
+								<!--Stripe.js injects the Card Element-->
+							</div>
+							<p id="card-error" role="alert"></p>
+						</div>
+
+						<input type="hidden" name="stripeToken" id="token" />
+
+						<div class="form-group">
+							<textarea name="notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Write your order notes here..."></textarea>
+						</div>
+
+						<% if (!user.autofill) { %>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="exampleCheck1" name="autofill" />
+							Remember you to automatically fill your info next time?
+							<label class="form-check-label" for="exampleCheck1"></label>
+						</div>
+						<% } %>
+
+						<div class="form-group mt-5">
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-primary btn-lg btn-block mt-5" id="btn-order">Place Order</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="wrapper3">
+					<h3>Order Details</h3>
+
+					<div class="row wrapper4">
+						<div class="col-sm-12">
+							<div class="cart">
+								<div class="row border-bottom mb-3">
+									<div class="col-sm-6">
+										<h3>Products</h3>
+									</div>
+									<div class="col-sm-6 text-right">
+										<h3>Price</h3>
+									</div>
+								</div>
+								<% Object.keys(session.cart.items).forEach(key => { %>
+								<div class="row products">
+									<div class="col-sm-6">
+										<p><%= session.cart.items[key].item.title %></p>
+									</div>
+									<div class="col-sm-6 text-right">
+										<p class="right-p">$ <%= session.cart.items[key].item.price %></p>
+									</div>
+								</div>
+								<% }) %>
+
+								<div class="row border-top total mt-5">
+									<div class="col-sm-6">
+										<p>Order Total</p>
+									</div>
+									<div class="col-sm-6 text-right">
+										<p>$<%= session.cart.totalPrice %></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

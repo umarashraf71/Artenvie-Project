@@ -1,0 +1,171 @@
+<link rel="stylesheet" href="/css/product.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Artwork</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div class="float-left">
+				<h1>ARTWORK</h1>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="row mt-5">
+			<div class="col-md-7">
+				<!-- <div class="row justify-content-center"> -->
+
+				<% if (post.file.length > 1) { %>
+
+				<div class="big">
+					<img src="/uploads/<%= post.file[0] %>" id="expandedImg" class="img-fluid img-thumbnail lazy" />
+				</div>
+
+				<div class="sub">
+					<% post.file.forEach(f => { %>
+
+					<div class="column float-left">
+						<img src="/uploads/<%= f %>" style="width: 100%;" class="lazy" onclick="myFunction(this);" />
+					</div>
+
+					<% }) %>
+				</div>
+				<div class="clearfix"></div>
+
+				<% } else { %>
+				<div class="image-gallery">
+					<a href="/uploads/<%= post.file %>" class="magnifier-thumb-wrapper"><img
+							src="/uploads/<%= post.file[0] %>" alt="Artwork Image" id="artImg"
+							class="img-fluid img-thumbnail w-100 lazy" /></a>
+				</div>
+				<% } %>
+			</div>
+
+			<div class="col-md-5">
+				<div class="artwork-text">
+					<h3><%= post.title %></h3>
+					<h4>
+						<a href="/home/user/artist/profile/<%= post.artist %>"><%= post.artist %> </a>
+					</h4>
+
+					<div class="artwork-text-line mt-1 mb-3"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Price:</span>
+						<span class="float-right">$ <%= post.price %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<% if(post.buyingFormat == 'Discount') { %>
+					<p>
+						<span class="float-left mb-1 artwork-text-head">Discount Price:</span>
+						<span class="float-right text-success">$ <%= post.discountPrice %> </span>
+					</p>
+					<div class="clearfix"></div>
+					<% } %>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Condition:</span>
+						<span class="float-right"><%= post.condition %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Size:</span>
+						<span class="float-right"><%= post.size %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Medium:</span>
+						<span class="float-right"><%= post.medium %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Category:</span>
+						<span class="float-right"><%= post.category %></span>
+					</p>
+					<div class="clearfix"></div>
+
+					<p>
+						<span class="float-left mb-1 artwork-text-head"> Buying Format:</span>
+						<span class="float-right"><%= post.buyingFormat %></span>
+					</p>
+					<div class="clearfix"></div>
+
+
+					<% if (user == undefined || user.userType == 'Customer') { %>
+
+					<% if (typeof session.cart !== 'undefined' && Object.keys(session.cart.items).includes(post.id)) { %>
+
+					<div class="artwork-text-line mt-2 mb-2"></div>
+					<a href="#" class="btn btn-secondary" id="remove__btn"
+						onclick="cart('/home/order/cart/delete/<%= post.id %>')">
+						Remove from Cart
+					</a>
+
+					<% } else { %>
+					<a href="#" class="btn btn-secondary add-to-cart"
+						onclick="cart('/home/order/cart/add/<%= post.id %>')">
+						Add to Cart
+					</a>
+					<%}%> 
+
+					<% if (user != undefined && user.wishlist.includes(post.id)) { %>
+					<a href="#" class="float-right wishlist" title="Remove from wishlist"
+						onclick="cart('/home/user/wishlist/<%= post.id %>')">
+						<i class="fa fa-heart"></i>
+					</a>
+
+					<% } else { %>
+					<a href="#" class="float-right wishlist" title="Add to wishlist"
+						onclick="cart('/home/user/wishlist/<%= post.id %>')">
+						<i class="fa fa-heart-o"></i>
+					</a>
+					<%}%>
+
+					<% } %>
+				</div>
+			</div>
+		</div>
+
+		<%# Artwork Description %>
+		<div class="container mt-3">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-header">
+							Artwork Description
+						</div>
+						<div class="card-body">
+							<p class="card-text">
+								<%= post.description %>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%# Artwork Comments %>
+		<%- include('../partials/home/comments') %> 
+
+	</div>
+
+	<%# Related Artworks %>
+	<%- include('../partials/home/relatedArtworks') %> 
+
+</div>
+</div>
+
+
+<script src="/js/product.js" defer></script>

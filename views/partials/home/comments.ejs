@@ -1,0 +1,69 @@
+<div class="container mt-5">
+			<div class="row ">
+				<div class="col-md-6 col-sm-12">
+					<div class="comment-wrapper">
+						<div class="panel panel-info">
+							<div class="panel-heading mt-3">
+
+								<% if (user != undefined) { %>
+								<% if (post.allowComments) { %>
+
+								<h6>Leave a Comment :</h6>
+								<form method="POST" action="/home/user/comment/<%= post.slug %>"
+									onsubmit="event.preventDefault(); displaySpinner(this,'btn-comment')">
+									<textarea name="body" class="form-control mt-3" placeholder="write a comment..."
+										rows="2" style="resize: none;border: none; border-bottom: 1px solid #cccccc;"
+										required></textarea>
+
+									<input type="hidden" name="id" value="<%= post.id %>">
+
+									<button type="submit" class="btn btn-secondary pull-right comment-btn"
+										id="btn-comment">Post</button>
+								</form>
+
+								<% } else { %>
+								<h5> Comments are currently turned off for this post !</h5>
+								<br>
+								<% } %>
+
+								<% } else { %>
+
+								<h5>You need to <a class="text-warning" href="/home/login"> login </a> to
+									post your
+									comment !
+								</h5>
+
+								<br>
+								<% } %>
+								<div class="clearfix"></div>
+								<hr>
+							</div>
+							<div class="panel-body">
+
+								<ul class="media-list">
+
+									<% post.comments.forEach(comment => { %>
+
+									<% if (comment.approveComment) { %>
+									<li class="media">
+										<a href="#" class="mr-3">
+											<img src="/uploads/users/<%= comment.image %>" alt="" class="lazy">
+										</a>
+										<div class="media-body">
+											<strong class="text-success"><%= comment.username %></strong>
+											<p>
+												<%= comment.body %>
+											</p>
+										</div>
+									</li>
+									<% } %>
+
+									<% }) %>
+							</div>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>

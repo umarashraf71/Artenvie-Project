@@ -1,0 +1,158 @@
+
+<style>
+
+	.navbar {
+		padding-top: 13px !important;
+		padding-bottom: 11px !important;
+		display: block !important;
+	  }
+
+	  .custom-toggler.navbar-toggler {
+		margin-top: 1px;
+		cursor: pointer;
+		margin-left: -15px !important;
+	  }
+	  
+	  
+	  .navbar-toggler:focus,
+	  .navbar-toggler:active,
+	  .navbar-toggler-icon:focus {
+		  outline: none;
+		  box-shadow: none;
+	  }
+	  
+	  @media (min-width: 766px) and (max-width: 992px)
+	  {
+		.custom-toggler.navbar-toggler {
+			margin-top: 10px;
+			cursor: pointer;
+			margin-left: 6px !important;
+		  }
+		  .profile-img img {
+			margin-left: 20px !important;
+		}
+		.navbar .dropdown-menu {
+			text-align: center;
+			transition: 0.3s;
+		}
+	  }
+	  @media (max-width: 766px)
+	  {
+		.custom-toggler.navbar-toggler {
+			
+			cursor: pointer;
+			margin-left: -25px !important;
+		}
+		.navbar .nav-item a {
+    
+			padding-left: 10px !important;
+		}
+		.profile-img img {
+			margin-left: 10px !important;
+		}
+		.navbar .dropdown-menu {
+			text-align: center;
+			transition: 0.3s;
+		}
+	  }
+
+</style>
+
+
+<nav class="navbar navbar-expand-lg fixed-top " style="background-color: black !important;">
+	<a class="navbar-brand d-md-none" href="#"><img src="" class="img-fluid nav-img" /></a>
+
+	<button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse"
+		data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="/home/artists">Artists</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="/home/categories">Gallery</a>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					Rooms
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="/home/rooms/General/1">General Room</a>
+					<a class="dropdown-item" href="/home/rooms/Discount/1">Discount Room</a>
+					<a class="dropdown-item" href="/home/rooms/Auction/1">Auction Room</a>
+					<a class="dropdown-item" href="/home/rooms/Special Offer/1">Special Offer Room</a>
+				</div>
+			</li>
+
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					Categories
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<% categories.forEach(ctg => { %>
+					<a class="dropdown-item" href="/home/categories/1/<%= ctg.name %>"><%= ctg.name %></a>
+					<% }) %>
+
+					<div class="dropdown-divider" style=" border-top: 1px solid #dfbd24 !important"></div>
+					<a class="dropdown-item" href="/home/categories">All Categories</a>
+				</div>
+			</li>
+
+
+			<li class="nav-item">
+				<a class="nav-link" href="/home/about">About us</a>
+			</li>
+
+			<li class="nav-item"><a class="nav-link cart-count" href="/home/order/shoppingcart">Cart
+					<% if (typeof session.cart != 'null' && typeof session.cart !==
+							'undefined' && Object.keys(session.cart.items).length > 0) { %>
+					<span>(<%= Object.keys(session.cart.items).length %>)</span>
+					<% } else { %>
+					<span></span>
+					<% }%>
+				</a>
+			</li>
+
+			<% if (user == undefined) { %>
+			<li class="nav-item">
+				<a class="nav-link" href="/home/register">Sign up</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/home/login">Login</a>
+			</li>
+
+			<% } if (user != undefined) { %>
+
+
+			<li class="nav-item ml-5">
+				<a class="nav-link" style="margin-left: -48px;" href="/home/logout">Log out </a>
+			</li>
+
+
+			<li class="nav-item ml-2">
+				<a class="nav-link" href="/admin" style="margin-left: -8px;"><%= user.name.split(' ')[0] %> </a>
+			</li>
+			<li class="nav-item profile-img">
+				<img width="42" height="42" src="/uploads/users/<%= user.image %>" alt="profile pic" style="
+								border-radius: 50%;
+								box-shadow: 0px 2px 5px #232323;
+								position: relative;
+							" />
+			</li>
+
+			<% } %>
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,168 @@
+<link rel="stylesheet" href="/css/categories.css" type="text/css" />
+
+<div class="road-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0 clearfix">
+				<a href="/home" class="float-left">Home</a><span class="ml-2 mb-0 float-left">/</span>
+				<p class="text-black ml-2 float-left">Gallery</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="wrapper">
+			<div>
+				<div class="float-left">
+					<h1>Art Gallery</h1>
+				</div>
+
+				<form
+					class="float-right form-inline d-flex justify-content-center md-form form-sm active-purple-2"
+					method="POST"
+					action="/home/search/artworks"
+					autocomplete="off"
+					onsubmit="event.preventDefault();
+					displaySpinner(this,'searchBtn')"
+				>
+					<input class="form-control form-control-sm" type="text" placeholder="Search here ... " aria-label="Search" name="search" id="search" />
+					<button type="submit" id="searchBtn" class="searchBtn">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+		<div class="container text-center mt-4 search">
+			<form action="/home/categories/filter" method="POST">
+				<div class="row ml-5">
+					<div class="col-md-2 mt-2">
+						<h5 class="filter">Filter by Price</h5>
+					</div>
+					<div class="col-md-4 mt-1">
+						<input type="number" name="minimum" class="form-control form-control-sm" placeholder="Minimum amount" required />
+					</div>
+					<div class="col-md-4 mt-1">
+						<input type="number" name="maximum" class="form-control form-control-sm" placeholder="Maximum amount" required />
+					</div>
+					<div class="col-md-2 mt-1 srch-btn">
+						<button type="submit" class="btn btn-info btn-sm">Filter</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="row mt-2">
+			<% posts.forEach(post => { %> <% if (post.user.status == 'Enabled' && post.status == 'Enabled') { %>
+			<div class="col-md-4 card-padd mt-5">
+				<div class="card shadow" style="width: auto">
+					<div class="inner img">
+						<% if (post.buyingFormat == 'Auction') { %>
+						<a href="/home/biddingroom/placebid/<%= post.id %>">
+							<img class="card-img-top" src="/uploads/<%=post.file%>" alt="" />
+						</a>
+						<% } else { %>
+						<a href="/home/productpage/<%=post.slug%>">
+							<% if (post.file.length > 1) { %>
+							<img class="card-img-top" src="/uploads/<%=post.file[0]%>" alt="" />
+							<% } else { %>
+							<img class="card-img-top" src="/uploads/<%=post.file%>" alt="" />
+							<% } %>
+						</a>
+						<% } %>
+					</div>
+					<div class="card-body">
+						<h4 class="card-title"><%= post.title %></h4>
+						<div class="buying-format">
+							<p>Buying Format: <%= post.buyingFormat %></p>
+						</div>
+						<div class="artwork-category">
+							<p>Category: <%= post.category %></p>
+						</div>
+						<div class="artist-name">
+							<p><%= post.artist %></p>
+						</div>
+
+						<% if (post.buyingFormat == 'Auction') { %>
+						<a href="/home/biddingroom/placebid/<%= post.id %>" class="btn btn-primary">View More</a>
+						<h5 class="mt-2 float-right">
+							<span>$<%= post.price %> </span>
+						</h5>
+						<% } else { %>
+						<a href="/home/productpage/<%=post.slug%>" class="btn btn-primary">View More</a>
+						<% } %> <% if (post.buyingFormat != 'Auction' ) { %>
+						<h5 class="mt-2 float-right">
+							<% if (post.buyingFormat == 'Discount') { %>
+							<span class="discount pr-2" style="text-decoration: line-through"> $<%= post.price %> </span>
+
+							<div class="text-success float-right">$<%= post.discountPrice %></div>
+
+							<div class="clearfix"></div>
+							<% } else { %>
+							<span>$<%= post.price %> </span>
+							<% } %>
+						</h5>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<% } %> <% }) %>
+		</div>
+	</div>
+
+	<%# Pagination %>
+	<div class="container">
+		<div class="row">
+			<div class="pages">
+				<nav aria-label="Page navigation example">
+					<% if (pages > 0) { %>
+					<ul class="pagination">
+						<% if (current == 1) { %>
+						<li class="page-item disabled"><a class="page-link">First</a></li>
+
+						<% } else { %> <% if (flag) { %>
+
+						<li class="page-item">
+							<a class="page-link" href="/home/categories/1/<%= posts[0].category %>">First</a>
+						</li>
+
+						<% } else { %>
+						<li class="page-item">
+							<a class="page-link" href="/home/categories/1">First</a>
+						</li>
+						<% } %> <% } %> <% var i = (Number(current) > 6 ? Number(current) - 5 : 1) %> <% if (i !== 1) { %>
+						<li class="page-item disabled"><a class="page-link">...</a></li>
+						<% } %> <% for (; i <= (Number(current) + 5) && i <= pages; i++) { %> <% if (i == current) { %>
+						<li class="page-item active"><a class="page-link"><%= i %></a></li>
+
+						<% } else { %> <% if (flag) { %>
+						<li class="page-item">
+							<a class="page-link" href="/home/categories/<%= i %>/<%= posts[0].category %>"><%= i %></a>
+						</li>
+						<% } else { %>
+						<li class="page-item">
+							<a class="page-link" href="/home/categories/<%= i %>"><%= i %></a>
+						</li>
+						<% } %> <% } %> <% if (i == Number(current) + 5 && i < pages) { %>
+						<li class="page-item disabled"><a class="page-link">...</a></li>
+						<% } %> <% } %> <% if (current == pages) { %>
+						<li class="page-item disabled"><a class="page-link">Last</a></li>
+
+						<% } else { %> <% if (flag) { %>
+						<li class="page-item">
+							<a class="page-link" href="/home/categories/<%= pages %>/<%= posts[0].category %>">Last</a>
+						</li>
+
+						<% } else { %>
+						<li class="page-item">
+							<a class="page-link" href="/home/categories/<%= pages %>">Last</a>
+						</li>
+						<% } %> <% } %>
+					</ul>
+					<% } %>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
