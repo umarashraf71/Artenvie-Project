@@ -75,6 +75,10 @@
 					<a class="nav-link" href="/home/about">About us</a>
 				</li>
 
+				<% if(user == undefined || user !== undefined) { %>
+
+					<% if(user == undefined || (user !== undefined && user.userType === 'Customer')) { %>
+
 				<li class="nav-item">
 					<a class="nav-link cart-count" href="/home/order/shoppingcart">Cart
 						<% if (typeof session.cart != 'null' && typeof session.cart !==
@@ -85,6 +89,8 @@
 						<% }%>
 					</a>
 				</li>
+
+				<% }} %>
 
 
 				<% if (user == undefined) { %>

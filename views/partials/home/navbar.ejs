@@ -110,6 +110,9 @@
 				</div>
 			</li>
 
+			<% if(user == undefined || user !== undefined) { %>
+
+				<% if(user == undefined || (user !== undefined && user.userType === 'Customer')) { %>
 
 			<li class="nav-item">
 				<a class="nav-link" href="/home/about">About us</a>
@@ -124,6 +127,8 @@
 					<% }%>
 				</a>
 			</li>
+
+			<% }} %>
 
 			<% if (user == undefined) { %>
 			<li class="nav-item">

@@ -554,13 +554,35 @@ module.exports = {
 
       const notify = new Notification({
         text: warningMessage,
-        username,
+        username, 
         sender: 'Admin',
         date: new Date(),
       });
 
       await notify.save();
       await user.save();
+
+
+      sendEmail(
+        process.env.EMAIL,
+        user.email,
+        'Admin Warning',
+        `
+        <div style="min-height:250px; width:62%;margin:0 auto; background-color:black; text-align:center; padding:25px; border-radius: 5px"> 
+          <p style="margin-top:10px; margin-bottom:20px; 
+                    margin-left:-10px; color:#dfbd24; 
+                    font-size:80px;letter-spacing:1px;">
+            Artenvie
+          </p>
+
+          <p style="color:white;  font-size:25px;" >
+            <h4 style="color:red">Admin Warning ! </h4>
+            Dear User ${user.username},<br> ${warningMessage} <br>
+          </p>
+
+        </div> `
+      );
+
 
       req.flash(
         'success_msg',
