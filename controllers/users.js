@@ -137,7 +137,7 @@ module.exports = {
                           color: white; padding: 12px 20px; 
                           text-align: center; font-size: 17px; 
                           cursor: pointer; text-decoration:none;" 
-                          href="http://localhost:3000/home/user/verify/${secretToken}">Verify Email</a>
+                          href="http://artenvie.herokuapp.com/home/user/verify/${secretToken}">Verify Email</a>
                 <br>
                 </p>
                 </div>
